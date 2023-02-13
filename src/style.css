@@ -1,0 +1,32 @@
+* {
+	box-sizing: border-box;
+	outline: none;
+}
+
+body {
+	align-items: center;
+	color: rgba(0, 0, 0, .8);
+	cursor: default;
+	display: flex;
+	height: 100%;
+	justify-content: center;
+	margin: 0;
+	-webkit-tap-highlight-color: transparent;
+	text-size-adjust: 100%;
+	user-select: none;
+}
+
+html {
+	height: 100%;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		color-scheme: dark;
+	}
+
+	body {
+		background-color: rgb(30, 30, 30);
+		color: whitesmoke;
+	}
+}
