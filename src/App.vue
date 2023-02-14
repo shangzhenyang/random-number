@@ -12,7 +12,7 @@ const settings = ref({
 	quantity: "1",
 	minimum: "1",
 	maximum: "60",
-	speed: "10"
+	speed: "100"
 } as SettingsInfo);
 const showSettingsPanel = ref(true);
 
@@ -21,8 +21,14 @@ function openGitHub() {
 }
 
 function setInputValue(key: string): ((evt: Event) => void) {
+	const hasMaxLimit = ["quantity", "speed"];
 	return (evt: Event) => {
 		const target = evt.target as HTMLInputElement;
+		if (hasMaxLimit.includes(key)) {
+			if (parseInt(target.value) > 100) {
+				return;
+			}
+		}
 		const newSettings = { ...settings.value };
 		newSettings[key as keyof typeof newSettings] = target.value;
 		settings.value = newSettings;
@@ -33,7 +39,13 @@ function setInputValue(key: string): ((evt: Event) => void) {
 <template>
 	<div class="app">
 		<main>
-			<NumberArea v-bind:settings="settings" />
+			<div class="number-areas">
+				<NumberArea
+					v-for="index in parseInt(settings.quantity)"
+					v-bind:key="index"
+					v-bind:settings="settings"
+				/>
+			</div>
 			<FooterArea />
 			<CornerIcons v-bind:items="[{
 				icon: ['fab', 'github'],
@@ -59,12 +71,19 @@ function setInputValue(key: string): ((evt: Event) => void) {
 main {
 	align-items: center;
 	display: flex;
-	justify-content: center;
+	overflow: auto;
 	width: 100%;
 }
 
 .app {
 	display: flex;
 	height: 100%;
+}
+
+.number-areas {
+	display: flex;
+	gap: 30px;
+	margin: 0 auto;
+	padding: 30px;
 }
 </style>

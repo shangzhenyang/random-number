@@ -11,7 +11,7 @@ defineProps<{
 </script>
 
 <template>
-	<aside v-if="show">
+	<div v-if="show" class="panel">
 		<h1>{{ $t("settings") }}</h1>
 		<InputBar
 			v-for="key in Object.keys(settings)"
@@ -22,28 +22,16 @@ defineProps<{
 			v-bind:value="settings[key as keyof typeof settings]"
 			v-bind:setValue="setInputValue(key)"
 		/>
-	</aside>
+	</div>
 </template>
 
 <style scoped>
-aside {
+.panel {
 	border-left: 1px solid rgba(0, 0, 0, .2);
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-	height: 100%;
-	padding: 20px;
-	width: 500px;
-}
-
-h1 {
-	font-size: 24px;
-	font-weight: normal;
-	margin: 0;
 }
 
 @media (prefers-color-scheme: dark) {
-	aside {
+	.panel {
 		border-left-color: rgba(255, 255, 255, .2);
 	}
 }

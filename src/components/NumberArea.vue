@@ -10,29 +10,25 @@ const props = defineProps<{
 const isScrolling = ref(false);
 const number = ref(0);
 
-let intervalId: number;
-
 function getRandInt(min: number, max: number): number {
 	return Math.floor((Math.random() * (max - min + 1)) + min);
 }
 
 function startScrolling() {
-	intervalId = window.setInterval(() => {
+	// use setTimeout instead of setInterval to dynamically change the speed
+	window.setTimeout(() => {
 		number.value = getRandInt(
 			parseInt(props.settings.minimum),
 			parseInt(props.settings.maximum)
 		);
-	}, 10);
-}
-
-function stopScrolling() {
-	clearInterval(intervalId);
+		if (isScrolling.value) {
+			startScrolling();
+		}
+	}, 1000 / parseInt(props.settings.speed));
 }
 
 function toggleScrolling() {
-	if (isScrolling.value) {
-		stopScrolling();
-	} else {
+	if (!isScrolling.value) {
 		startScrolling();
 	}
 	isScrolling.value = !isScrolling.value;
@@ -84,6 +80,7 @@ function toggleScrolling() {
 	border: 1px solid rgba(0, 0, 0, .2);
 	border-radius: 5px;
 	font-size: 64px;
+	overflow: auto;
 	padding: 20px;
 	text-align: center;
 	width: 300px;
