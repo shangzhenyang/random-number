@@ -10,7 +10,7 @@ defineProps<{
 	<div class="corner-icons">
 		<font-awesome-icon
 			v-for="item in items"
-			v-bind:key="item"
+			v-bind:key="item.title"
 			v-bind:icon="item.icon"
 			size="xl"
 			v-bind:title="item.title"

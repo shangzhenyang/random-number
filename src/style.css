@@ -4,19 +4,17 @@
 }
 
 body {
-	align-items: center;
 	color: rgba(0, 0, 0, .8);
 	cursor: default;
-	display: flex;
 	height: 100%;
-	justify-content: center;
 	margin: 0;
 	-webkit-tap-highlight-color: transparent;
 	text-size-adjust: 100%;
 	user-select: none;
 }
 
-html {
+html,
+#app {
 	height: 100%;
 }
 
