@@ -1,7 +1,11 @@
 {
+	"maximum": "Maximum",
+	"minimum": "Minimum",
+	"quantity": "Quantity",
 	"randomNumber": "Random Number",
 	"settings": "Settings",
 	"shangzhenYang": "Shangzhen Yang",
+	"speed": "Speed",
 	"start": "Start",
 	"stop": "Stop"
 }

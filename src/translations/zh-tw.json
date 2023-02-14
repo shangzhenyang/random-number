@@ -1,7 +1,11 @@
 {
+	"maximum": "最大值",
+	"minimum": "最小值",
+	"quantity": "數量",
 	"randomNumber": "隨機選號",
 	"settings": "設定",
 	"shangzhenYang": "楊尚臻",
+	"speed": "速度",
 	"start": "開始",
 	"stop": "停止"
 }

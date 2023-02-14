@@ -6,17 +6,34 @@ import FooterArea from "@/components/FooterArea.vue";
 import NumberArea from "@/components/NumberArea.vue";
 import SettingsPanel from "@/components/SettingsPanel.vue";
 
+import type SettingsInfo from "@/types/SettingsInfo";
+
+const settings = ref({
+	quantity: "1",
+	minimum: "1",
+	maximum: "60",
+	speed: "10"
+} as SettingsInfo);
 const showSettingsPanel = ref(true);
 
 function openGitHub() {
 	window.open("https://github.com/shangzhenyang/random-number");
+}
+
+function setInputValue(key: string): ((evt: Event) => void) {
+	return (evt: Event) => {
+		const target = evt.target as HTMLInputElement;
+		const newSettings = { ...settings.value };
+		newSettings[key as keyof typeof newSettings] = target.value;
+		settings.value = newSettings;
+	};
 }
 </script>
 
 <template>
 	<div class="app">
 		<main>
-			<NumberArea />
+			<NumberArea v-bind:settings="settings" />
 			<FooterArea />
 			<CornerIcons v-bind:items="[{
 				icon: ['fab', 'github'],
@@ -30,7 +47,11 @@ function openGitHub() {
 				}
 			}]" />
 		</main>
-		<SettingsPanel v-bind:show="showSettingsPanel" />
+		<SettingsPanel
+			v-bind:show="showSettingsPanel"
+			v-bind:settings="settings"
+			v-bind:setInputValue="setInputValue"
+		/>
 	</div>
 </template>
 

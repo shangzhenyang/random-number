@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
+import type SettingsInfo from "@/types/SettingsInfo";
+
+const props = defineProps<{
+	settings: SettingsInfo;
+}>();
+
 const isScrolling = ref(false);
 const number = ref(0);
 
@@ -12,7 +18,10 @@ function getRandInt(min: number, max: number): number {
 
 function startScrolling() {
 	intervalId = window.setInterval(() => {
-		number.value = getRandInt(0, 100);
+		number.value = getRandInt(
+			parseInt(props.settings.minimum),
+			parseInt(props.settings.maximum)
+		);
 	}, 10);
 }
 
