@@ -22,10 +22,24 @@ defineProps<{
 			v-bind:value="settings[key as keyof typeof settings]"
 			v-bind:setValue="setInputValue(key)"
 		/>
+		<section>
+			<h2>{{ $t("names") }}</h2>
+			<ul>
+				<li>Name 1</li>
+				<li>Name 2</li>
+				<li>Name 3</li>
+				<li>Name 4</li>
+			</ul>
+		</section>
 	</div>
 </template>
 
 <style scoped>
+h2 {
+	font-size: 20px;
+	font-weight: normal;
+}
+
 .panel {
 	border-left: 1px solid rgba(0, 0, 0, .2);
 }

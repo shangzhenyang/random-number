@@ -1,6 +1,8 @@
 {
+	"history": "歷史記錄",
 	"maximum": "最大值",
 	"minimum": "最小值",
+	"names": "名字",
 	"quantity": "數量",
 	"randomNumber": "隨機選號",
 	"settings": "設定",

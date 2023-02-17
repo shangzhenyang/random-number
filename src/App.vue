@@ -3,18 +3,26 @@ import { ref } from "vue";
 
 import CornerIcons from "@/components/CornerIcons.vue";
 import FooterArea from "@/components/FooterArea.vue";
+import HistoryPanel from "@/components/HistoryPanel.vue";
 import NumberArea from "@/components/NumberArea.vue";
 import SettingsPanel from "@/components/SettingsPanel.vue";
 
 import type SettingsInfo from "@/types/SettingsInfo";
 
+const historyItems = ref([] as string[]);
 const settings = ref({
 	quantity: "1",
 	minimum: "1",
 	maximum: "60",
 	speed: "100"
 } as SettingsInfo);
+const showHistory = ref(false);
 const showSettingsPanel = ref(true);
+
+function addHistoryItem(item: string) {
+	showHistory.value = true;
+	historyItems.value.push(item);
+}
 
 function openGitHub() {
 	window.open("https://github.com/shangzhenyang/random-number");
@@ -38,12 +46,17 @@ function setInputValue(key: string): ((evt: Event) => void) {
 
 <template>
 	<div class="app">
+		<HistoryPanel
+			v-bind:historyItems="historyItems"
+			v-bind:show="showHistory"
+		/>
 		<main>
 			<div class="number-areas">
 				<NumberArea
 					v-for="index in parseInt(settings.quantity)"
 					v-bind:key="index"
 					v-bind:settings="settings"
+					v-bind:addHistoryItem="addHistoryItem"
 				/>
 			</div>
 			<FooterArea />

@@ -10,8 +10,10 @@ a {
 }
 
 footer {
-	bottom: 20px;
-	left: 20px;
+	backdrop-filter: blur(10px);
+	bottom: 0;
+	left: 0;
+	padding: 20px;
 	position: fixed;
 }
 </style>

@@ -1,6 +1,8 @@
 {
+	"history": "History",
 	"maximum": "Maximum",
 	"minimum": "Minimum",
+	"names": "Names",
 	"quantity": "Quantity",
 	"randomNumber": "Random Number",
 	"settings": "Settings",

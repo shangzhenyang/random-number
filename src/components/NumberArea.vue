@@ -5,6 +5,7 @@ import type SettingsInfo from "@/types/SettingsInfo";
 
 const props = defineProps<{
 	settings: SettingsInfo;
+	addHistoryItem: (item: string) => void;
 }>();
 
 const isScrolling = ref(false);
@@ -28,7 +29,9 @@ function startScrolling() {
 }
 
 function toggleScrolling() {
-	if (!isScrolling.value) {
+	if (isScrolling.value) {
+		props.addHistoryItem(number.value.toString());
+	} else {
 		startScrolling();
 	}
 	isScrolling.value = !isScrolling.value;
@@ -41,7 +44,7 @@ function toggleScrolling() {
 		<button
 			class="main-btn"
 			@click="toggleScrolling">
-			{{ isScrolling? $t("stop"): $t("start") }}
+			{{ isScrolling ? $t("stop") : $t("start") }}
 		</button>
 	</div>
 </template>
