@@ -2,19 +2,30 @@
 
 defineProps<{
 	id: string;
+	isCheckBox: boolean;
 	labelValue: string;
-	type: string;
-	value: string;
+	value: string | boolean;
 	setValue: (evt: Event) => void;
 }>();
 </script>
 
 <template>
-	<div class="input-bar">
+	<div v-bind:class="{
+		'input-bar': true,
+		'checkbox': isCheckBox
+	}">
 		<label v-bind:for="id">{{ labelValue }}</label>
 		<input
+			v-if="isCheckBox"
 			v-bind:id="id"
-			v-bind:type="type"
+			type="checkbox"
+			v-bind:checked="Boolean(value)"
+			v-on:change="setValue"
+		/>
+		<input
+			v-else
+			v-bind:id="id"
+			type="number"
 			v-bind:value="value"
 			v-on:input="setValue"
 		/>
@@ -22,6 +33,10 @@ defineProps<{
 </template>
 
 <style scoped>
+.checkbox {
+	margin-top: 10px;
+}
+
 .input-bar {
 	align-items: center;
 	display: flex;
@@ -29,7 +44,7 @@ defineProps<{
 	justify-content: space-between;
 }
 
-.input-bar input {
+.input-bar input[type=number] {
 	background-color: rgba(0, 0, 0, .1);
 	border: none;
 	border-radius: 5px;
@@ -39,7 +54,7 @@ defineProps<{
 }
 
 @media (prefers-color-scheme: dark) {
-	.input-bar input {
+	.input-bar input[type=number] {
 		background-color: rgba(255, 255, 255, .1);
 	}
 }

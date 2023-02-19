@@ -16,6 +16,26 @@ function deleteName(index: number) {
 	newNames.splice(index, 1);
 	props.setNames(newNames);
 }
+
+function importNames() {
+	const newInput = document.createElement("input");
+	newInput.type = "file";
+	newInput.accept = ".txt";
+	newInput.onchange = () => {
+		if (newInput.files && newInput.files.length > 0) {
+			const file = newInput.files[0];
+			const reader = new FileReader();
+			reader.onload = () => {
+				if (typeof reader.result === "string") {
+					const newNames = reader.result.split("\n");
+					props.setNames(newNames);
+				}
+			};
+			reader.readAsText(file);
+		}
+	};
+	newInput.click();
+}
 </script>
 
 <template>
@@ -25,7 +45,7 @@ function deleteName(index: number) {
 				icon: ['fas', 'download'],
 				title: $t('import'),
 				show: true,
-				onClick: () => { }
+				onClick: importNames
 			}, {
 				icon: ['fas', 'upload'],
 				title: $t('export'),
@@ -76,6 +96,6 @@ h2 {
 }
 
 .title-bar {
-	margin-top: 10px;
+	margin-top: 15px;
 }
 </style>

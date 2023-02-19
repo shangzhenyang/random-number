@@ -3,6 +3,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import {
+	faClockRotateLeft,
 	faDeleteLeft,
 	faDownload,
 	faGear,
@@ -52,7 +53,15 @@ i18next.init({
 		escapeValue: false
 	}
 });
-library.add(faDeleteLeft, faDownload, faGear, faGithub, faUpload, faXmark);
+library.add(
+	faClockRotateLeft,
+	faDeleteLeft,
+	faDownload,
+	faGear,
+	faGithub,
+	faUpload,
+	faXmark
+);
 
 document.documentElement.lang = lang;
 document.title = i18next.t("randomNumber");

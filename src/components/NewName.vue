@@ -38,13 +38,15 @@ function saveName() {
 		/>
 		<button
 			v-bind:disabled="!newName"
-			v-on:click="saveName">
+			v-on:click="saveName"
+		>
 			{{ $t("save") }}
 		</button>
 		<button
 			v-if="index"
 			v-bind:disabled="!newName"
-			v-on:click="doneEditing">
+			v-on:click="doneEditing"
+		>
 			{{ $t("cancel") }}
 		</button>
 	</li>

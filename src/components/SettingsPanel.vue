@@ -29,13 +29,13 @@ defineProps<{
 			<h1>{{ $t("settings") }}</h1>
 		</TitleBar>
 		<InputBar
-			v-for="key in Object.keys(settings)"
+			v-for="(value, key) in settings"
 			v-bind:key="key"
 			v-bind:id="key"
-			v-bind:labelValue="$t(key)"
-			type="number"
-			v-bind:value="settings[key as keyof typeof settings]"
-			v-bind:setValue="setInputValue(key)"
+			v-bind:is-check-box="typeof value === 'boolean'"
+			v-bind:label-value="$t(key)"
+			v-bind:value="value"
+			v-bind:set-value="setInputValue(key)"
 		/>
 		<NameList
 			v-bind:names="names"

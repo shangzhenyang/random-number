@@ -39,11 +39,13 @@ const itemsShowing = computed(() => {
 
 .icon {
 	cursor: pointer;
-	transition: transform .25s;
+	transition: all .25s;
 }
 
+.icon:focus,
 .icon:hover {
-	transform: rotate(360deg);
+	opacity: .8;
+	transform: rotate(-360deg);
 }
 
 .icon:active {
