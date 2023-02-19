@@ -52,24 +52,27 @@ function toggleScrolling() {
 
 <style scoped>
 .main-btn {
-	background-color: transparent;
+	background-color: var(--theme-color);
 	border: 1px solid rgba(0, 0, 0, .2);
 	border-radius: 5px;
-	color: inherit;
+	color: white;
 	font-size: 24px;
 	padding: 10px 30px;
 	text-transform: uppercase;
-	transition: background-color .25s;
+	transition: filter .25s;
 	width: 300px;
 }
 
-.main-btn:focus,
+.main-btn:focus {
+	filter: brightness(1.1);
+}
+
 .main-btn:hover {
-	background-color: rgba(0, 0, 0, .1);
+	filter: brightness(1.2);
 }
 
 .main-btn:active {
-	background-color: rgba(0, 0, 0, .2);
+	filter: brightness(.9);
 }
 
 .number-area {
@@ -91,20 +94,8 @@ function toggleScrolling() {
 }
 
 @media (prefers-color-scheme: dark) {
-	.main-btn {
-		background-color: rgba(255, 255, 255, .1);
-		border-color: rgba(255, 255, 255, .2);
-	}
 
-	.main-btn:focus,
-	.main-btn:hover {
-		background-color: rgba(255, 255, 255, .2);
-	}
-
-	.main-btn:active {
-		background-color: rgba(255, 255, 255, .3);
-	}
-
+	.main-btn,
 	.number-box {
 		border-color: rgba(255, 255, 255, .2);
 	}

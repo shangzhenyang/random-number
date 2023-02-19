@@ -9,6 +9,7 @@
 	"export": "Export",
 	"history": "History",
 	"import": "Import",
+	"importNamesDescription": "You can import txt files in which each line is a name.",
 	"maximum": "Maximum",
 	"minimum": "Minimum",
 	"names": "Names",

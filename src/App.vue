@@ -9,7 +9,7 @@ import SettingsPanel from "@/components/SettingsPanel.vue";
 
 import type SettingsInfo from "@/types/SettingsInfo";
 
-const isDesktop = window.innerWidth > 1200;
+const isDesktop = window.innerWidth > 1160;
 
 const historyItems = ref([] as string[]);
 const names = ref((() => {

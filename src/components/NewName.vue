@@ -26,7 +26,7 @@ function saveName() {
 </script>
 
 <template>
-	<li class="input-bar">
+	<li class="list-input-bar">
 		<label for="new-name">{{ $t("newName") }}</label>
 		<input
 			id="new-name"
@@ -53,25 +53,25 @@ function saveName() {
 </template>
 
 <style scoped>
-.input-bar input {
+.list-input-bar input {
 	background-color: transparent;
 	transition: background-color .25s;
 }
 
-.input-bar input:focus {
+.list-input-bar input:focus {
 	background-color: rgba(0, 0, 0, .1);
 }
 
-.input-bar input::placeholder {
+.list-input-bar input::placeholder {
 	color: rgba(0, 0, 0, .5);
 }
 
 @media (prefers-color-scheme: dark) {
-	li.input-bar input:focus {
+	.list-input-bar input:focus {
 		background-color: rgba(255, 255, 255, .1);
 	}
 
-	li.input-bar input::placeholder {
+	.list-input-bar input::placeholder {
 		color: rgba(255, 255, 255, .5);
 	}
 }

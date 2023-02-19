@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import i18next from "i18next";
 
 import NewName from "@/components/NewName.vue";
 import TitleBar from "@/components/TitleBar.vue";
@@ -9,6 +10,7 @@ const props = defineProps<{
 	setNames: (newValue: string[]) => void;
 }>();
 
+const description = ref(i18next.t("importNamesDescription"));
 const editingIndex = ref(-1);
 
 function deleteName(index: number) {
@@ -56,6 +58,7 @@ function importNames() {
 		>
 			<h2>{{ $t("names") }}</h2>
 		</TitleBar>
+		<div class="description">{{ description }}</div>
 		<ul>
 			<NewName
 				v-bind:names="names"
@@ -95,7 +98,12 @@ h2 {
 	margin: 0;
 }
 
+.description {
+	font-size: 14px;
+	opacity: .8;
+}
+
 .title-bar {
-	margin-top: 15px;
+	margin: 15px 0 10px;
 }
 </style>

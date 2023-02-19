@@ -15,6 +15,7 @@ defineProps<{
 		'checkbox': isCheckBox
 	}">
 		<label v-bind:for="id">{{ labelValue }}</label>
+		<div v-if="isCheckBox" class="spacer"></div>
 		<input
 			v-if="isCheckBox"
 			v-bind:id="id"
@@ -44,6 +45,13 @@ defineProps<{
 	justify-content: space-between;
 }
 
+.input-bar input[type=checkbox] {
+	--size: 20px;
+	accent-color: var(--theme-color);
+	height: var(--size);
+	width: var(--size);
+}
+
 .input-bar input[type=number] {
 	background-color: rgba(0, 0, 0, .1);
 	border: none;
@@ -53,9 +61,18 @@ defineProps<{
 	width: 70%;
 }
 
+.spacer {
+	border-bottom: 1px solid rgba(0, 0, 0, .1);
+	flex: 1;
+}
+
 @media (prefers-color-scheme: dark) {
 	.input-bar input[type=number] {
 		background-color: rgba(255, 255, 255, .1);
+	}
+
+	.spacer {
+		border-bottom: 1px solid rgba(255, 255, 255, .1);
 	}
 }
 </style>

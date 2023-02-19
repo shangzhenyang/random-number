@@ -9,6 +9,7 @@
 	"export": "导出",
 	"history": "历史记录",
 	"import": "导入",
+	"importNamesDescription": "您可以导入 txt 文件，每行一个名字。",
 	"maximum": "最大值",
 	"minimum": "最小值",
 	"names": "名字",

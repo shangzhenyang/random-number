@@ -1,3 +1,7 @@
+:root {
+	--theme-color: rgb(0, 102, 204);
+}
+
 * {
 	box-sizing: border-box;
 	outline: none;
@@ -6,6 +10,7 @@
 body {
 	color: rgba(0, 0, 0, .8);
 	cursor: default;
+	font-family: sans-serif;
 	height: 100%;
 	margin: 0;
 	-webkit-tap-highlight-color: transparent;
@@ -24,6 +29,7 @@ html,
 
 li {
 	--radius: 5px;
+	align-items: center;
 	background-color: rgba(0, 0, 0, .1);
 	display: flex;
 	overflow: hidden;
