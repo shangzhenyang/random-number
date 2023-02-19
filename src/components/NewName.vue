@@ -8,11 +8,11 @@ const props = defineProps<{
 	doneEditing?: () => void;
 }>();
 
-const newName = ref(props.index ? props.names[props.index] : "");
+const newName = ref(props.index !== undefined ? props.names[props.index] : "");
 
 function saveName() {
 	if (newName.value) {
-		if (props.index) {
+		if (props.index !== undefined) {
 			const newNames = [...props.names];
 			newNames[props.index] = newName.value;
 			props.setNames(newNames);

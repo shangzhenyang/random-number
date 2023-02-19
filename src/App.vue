@@ -57,6 +57,10 @@ function setInputValue(key: string): ((evt: Event) => void) {
 function setNames(newValue: string[]) {
 	names.value = newValue;
 	localStorage.setItem("names", JSON.stringify(newValue));
+
+	settings.value.minimum = "1";
+	settings.value.maximum = newValue.length === 0 ?
+		"60" : newValue.length.toString();
 }
 </script>
 
