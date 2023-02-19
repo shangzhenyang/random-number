@@ -10,6 +10,17 @@ import SettingsPanel from "@/components/SettingsPanel.vue";
 import type SettingsInfo from "@/types/SettingsInfo";
 
 const historyItems = ref([] as string[]);
+const names = ref((() => {
+	try {
+		const names = localStorage.getItem("names");
+		if (names) {
+			return JSON.parse(names);
+		}
+		return [];
+	} catch {
+		return [];
+	}
+})() as string[]);
 const settings = ref({
 	quantity: "1",
 	minimum: "1",
@@ -42,19 +53,25 @@ function setInputValue(key: string): ((evt: Event) => void) {
 		settings.value = newSettings;
 	};
 }
+
+function setNames(newValue: string[]) {
+	names.value = newValue;
+	localStorage.setItem("names", JSON.stringify(newValue));
+}
 </script>
 
 <template>
 	<div class="app">
 		<HistoryPanel
-			v-bind:historyItems="historyItems"
 			v-bind:show="showHistory"
+			v-bind:historyItems="historyItems"
 		/>
 		<main>
 			<div class="number-areas">
 				<NumberArea
 					v-for="index in parseInt(settings.quantity)"
 					v-bind:key="index"
+					v-bind:names="names"
 					v-bind:settings="settings"
 					v-bind:addHistoryItem="addHistoryItem"
 				/>
@@ -74,8 +91,10 @@ function setInputValue(key: string): ((evt: Event) => void) {
 		</main>
 		<SettingsPanel
 			v-bind:show="showSettingsPanel"
+			v-bind:names="names"
 			v-bind:settings="settings"
 			v-bind:setInputValue="setInputValue"
+			v-bind:setNames="setNames"
 		/>
 	</div>
 </template>

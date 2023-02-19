@@ -2,8 +2,8 @@
 import { computed } from "vue";
 
 const props = defineProps<{
-	historyItems: string[];
 	show: boolean;
+	historyItems: string[];
 }>();
 
 const historyItemsReversed = computed(() => {

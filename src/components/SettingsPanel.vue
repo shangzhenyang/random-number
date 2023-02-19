@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import InputBar from "@/components/InputBar.vue";
+import NameList from "@/components/NameList.vue";
 
 import type SettingsInfo from "@/types/SettingsInfo";
 
 defineProps<{
 	show: boolean;
+	names: string[];
 	settings: SettingsInfo;
 	setInputValue: (key: string) => ((evt: Event) => void);
+	setNames: (newValue: string[]) => void;
 }>();
 </script>
 
@@ -22,15 +25,10 @@ defineProps<{
 			v-bind:value="settings[key as keyof typeof settings]"
 			v-bind:setValue="setInputValue(key)"
 		/>
-		<section>
-			<h2>{{ $t("names") }}</h2>
-			<ul>
-				<li>Name 1</li>
-				<li>Name 2</li>
-				<li>Name 3</li>
-				<li>Name 4</li>
-			</ul>
-		</section>
+		<NameList
+			v-bind:names="names"
+			v-bind:setNames="setNames"
+		/>
 	</div>
 </template>
 

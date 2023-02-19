@@ -13,6 +13,10 @@ body {
 	user-select: none;
 }
 
+button:disabled {
+	pointer-events: none;
+}
+
 html,
 #app {
 	height: 100%;
@@ -21,9 +25,8 @@ html,
 li {
 	--radius: 5px;
 	background-color: rgba(0, 0, 0, .1);
+	display: flex;
 	overflow: hidden;
-	padding: 10px 15px;
-	transition: background-color .25s;
 }
 
 li:first-of-type {
@@ -40,12 +43,28 @@ li:nth-child(even) {
 	background-color: rgba(0, 0, 0, .05);
 }
 
-li:hover {
+li>* {
+	border: none;
+	font-size: inherit;
+	padding: 10px 15px;
+}
+
+li button {
+	background-color: transparent;
+	transition: background-color .25s;
+}
+
+li button:hover {
 	background-color: rgba(0, 0, 0, .2);
 }
 
-li:active {
+li button:active {
 	background-color: rgba(0, 0, 0, .25);
+}
+
+li .list-item-main {
+	flex: 1;
+	min-width: 0;
 }
 
 ul {
@@ -86,11 +105,11 @@ ul {
 		background-color: rgba(255, 255, 255, .05);
 	}
 
-	li:hover {
+	li button:hover {
 		background-color: rgba(255, 255, 255, .2);
 	}
 
-	li:active {
+	li button:active {
 		background-color: rgba(255, 255, 255, .25);
 	}
 }
