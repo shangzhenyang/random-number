@@ -1,9 +1,12 @@
 {
 	"cancel": "取消",
+	"close": "關閉",
 	"delete": "刪除",
 	"edit": "編輯",
 	"enterHere": "在此輸入",
+	"export": "匯出",
 	"history": "歷史記錄",
+	"import": "匯入",
 	"maximum": "最大值",
 	"minimum": "最小值",
 	"names": "名字",

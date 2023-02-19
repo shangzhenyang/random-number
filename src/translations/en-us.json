@@ -1,9 +1,12 @@
 {
 	"cancel": "Cancel",
+	"close": "Close",
 	"delete": "Delete",
 	"edit": "Edit",
 	"enterHere": "Enter Here",
+	"export": "Export",
 	"history": "History",
+	"import": "Import",
 	"maximum": "Maximum",
 	"minimum": "Minimum",
 	"names": "Names",

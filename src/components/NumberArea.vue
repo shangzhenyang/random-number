@@ -43,7 +43,8 @@ function toggleScrolling() {
 		<div class="number-box">{{ number }}</div>
 		<button
 			class="main-btn"
-			@click="toggleScrolling">
+			v-on:click="toggleScrolling"
+		>
 			{{ isScrolling ? $t("stop") : $t("start") }}
 		</button>
 	</div>

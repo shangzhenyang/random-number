@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import CornerIcons from "@/components/CornerIcons.vue";
 import FooterArea from "@/components/FooterArea.vue";
 import HistoryPanel from "@/components/HistoryPanel.vue";
+import IconBar from "@/components/IconBar.vue";
 import NumberArea from "@/components/NumberArea.vue";
 import SettingsPanel from "@/components/SettingsPanel.vue";
 
@@ -30,9 +30,9 @@ const settings = ref({
 const showHistory = ref(false);
 const showSettingsPanel = ref(true);
 
-function addHistoryItem(item: string) {
+function addHistoryItem(newItem: string) {
 	showHistory.value = true;
-	historyItems.value.push(item);
+	historyItems.value.push(newItem);
 }
 
 function openGitHub() {
@@ -65,6 +65,12 @@ function setNames(newValue: string[]) {
 		<HistoryPanel
 			v-bind:show="showHistory"
 			v-bind:historyItems="historyItems"
+			v-bind:closePanel="() => {
+				showHistory = false;
+			}"
+			v-bind:set-history-items="(newValue) => {
+				historyItems = newValue;
+			}"
 		/>
 		<main>
 			<div class="number-areas">
@@ -77,22 +83,31 @@ function setNames(newValue: string[]) {
 				/>
 			</div>
 			<FooterArea />
-			<CornerIcons v-bind:items="[{
-				icon: ['fab', 'github'],
-				title: 'GitHub',
-				onClick: openGitHub
-			}, {
-				icon: ['fas', 'gear'],
-				title: $t('settings'),
-				onClick: () => {
-					showSettingsPanel = !showSettingsPanel;
-				}
-			}]" />
+			<IconBar
+				class="corner-icons"
+				v-bind:items="[{
+					icon: ['fas', 'gear'],
+					show: !showSettingsPanel,
+					title: $t('settings'),
+					onClick: () => {
+						showSettingsPanel = !showSettingsPanel;
+					}
+				}, {
+					icon: ['fab', 'github'],
+					show: true,
+					title: 'GitHub',
+					onClick: openGitHub
+				}]"
+				size="xl"
+			/>
 		</main>
 		<SettingsPanel
 			v-bind:show="showSettingsPanel"
 			v-bind:names="names"
 			v-bind:settings="settings"
+			v-bind:closePanel="() => {
+				showSettingsPanel = false;
+			}"
 			v-bind:setInputValue="setInputValue"
 			v-bind:setNames="setNames"
 		/>
@@ -110,6 +125,12 @@ main {
 .app {
 	display: flex;
 	height: 100%;
+}
+
+.corner-icons {
+	bottom: 20px;
+	position: fixed;
+	right: 20px;
 }
 
 .number-areas {

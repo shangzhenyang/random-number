@@ -2,7 +2,13 @@ import { createApp } from "vue";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { faGear } from "@fortawesome/free-solid-svg-icons";
+import {
+	faDeleteLeft,
+	faDownload,
+	faGear,
+	faUpload,
+	faXmark
+} from "@fortawesome/free-solid-svg-icons";
 import i18next from "i18next";
 import I18NextVue from "i18next-vue";
 
@@ -46,7 +52,7 @@ i18next.init({
 		escapeValue: false
 	}
 });
-library.add(faGear, faGithub);
+library.add(faDeleteLeft, faDownload, faGear, faGithub, faUpload, faXmark);
 
 document.documentElement.lang = lang;
 document.title = i18next.t("randomNumber");

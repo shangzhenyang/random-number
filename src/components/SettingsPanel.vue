@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import InputBar from "@/components/InputBar.vue";
 import NameList from "@/components/NameList.vue";
+import TitleBar from "@/components/TitleBar.vue";
 
 import type SettingsInfo from "@/types/SettingsInfo";
 
@@ -8,6 +9,7 @@ defineProps<{
 	show: boolean;
 	names: string[];
 	settings: SettingsInfo;
+	closePanel: () => void;
 	setInputValue: (key: string) => ((evt: Event) => void);
 	setNames: (newValue: string[]) => void;
 }>();
@@ -15,7 +17,17 @@ defineProps<{
 
 <template>
 	<div v-if="show" class="panel">
-		<h1>{{ $t("settings") }}</h1>
+		<TitleBar
+			v-bind:icons="[{
+				icon: ['fas', 'xmark'],
+				title: $t('close'),
+				show: true,
+				onClick: closePanel
+			}]"
+			icon-size="xl"
+		>
+			<h1>{{ $t("settings") }}</h1>
+		</TitleBar>
 		<InputBar
 			v-for="key in Object.keys(settings)"
 			v-bind:key="key"
@@ -33,11 +45,6 @@ defineProps<{
 </template>
 
 <style scoped>
-h2 {
-	font-size: 20px;
-	font-weight: normal;
-}
-
 .panel {
 	border-left: 1px solid rgba(0, 0, 0, .2);
 }

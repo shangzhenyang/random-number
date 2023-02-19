@@ -54,6 +54,7 @@ li button {
 	transition: background-color .25s;
 }
 
+li button:focus,
 li button:hover {
 	background-color: rgba(0, 0, 0, .2);
 }
@@ -77,6 +78,7 @@ ul {
 	flex-direction: column;
 	gap: 10px;
 	height: 100%;
+	max-width: 100%;
 	overflow: auto;
 	padding: 20px 20px 50px;
 }
@@ -105,6 +107,7 @@ ul {
 		background-color: rgba(255, 255, 255, .05);
 	}
 
+	li button:focus,
 	li button:hover {
 		background-color: rgba(255, 255, 255, .2);
 	}
