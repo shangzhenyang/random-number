@@ -1,6 +1,6 @@
 # Random Number
 
-A random number generator with customized options including range, repetition, even/odd selection, and alias name labeling. It is a progressive web app (PWA) and can be used both online and offline. No installation is required, simply visit the website to use the tool.
+A random number generator with customizable options including range, repetition, even/odd selection, and alias name labeling. It is a progressive web app (PWA) and can be used both online and offline. No installation is required, simply visit the website to use the tool.
 
 ## Features
 

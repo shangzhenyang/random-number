@@ -20,7 +20,7 @@ export default defineConfig({
 				short_name: "Random",
 				id: "/",
 				theme_color: "#0066cc",
-				description: "A random number generator with customized options including range, repetition, even/odd selection, and alias name labeling.",
+				description: "A random number generator with customizable options including range, repetition, even/odd selection, and alias name labeling.",
 				icons: [{
 					src: "https://assets.retiehe.com/ysz/avatar.png",
 					sizes: "720x720",

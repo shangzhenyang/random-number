@@ -32,6 +32,11 @@ body {
 	user-select: none;
 }
 
+button {
+	color: inherit;
+	touch-action: manipulation;
+}
+
 button:disabled {
 	pointer-events: none;
 }
