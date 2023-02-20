@@ -25,7 +25,7 @@ export default defineConfig({
 					src: "https://assets.retiehe.com/ysz/avatar.png",
 					sizes: "720x720",
 					type: "image/png",
-					purpose: "any maskable"
+					purpose: "any"
 				}]
 			}
 		})
