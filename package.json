@@ -20,7 +20,6 @@
 		"vue": "^3.2.45"
 	},
 	"devDependencies": {
-		"@rollup/plugin-eslint": "^9.0.3",
 		"@rushstack/eslint-patch": "^1.2.0",
 		"@types/node": "^18.13.0",
 		"@typescript-eslint/eslint-plugin": "^5.51.0",

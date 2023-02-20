@@ -58,7 +58,11 @@ let showHistoryPanelOnce = false;
 
 function addHistoryItem(newItem: string) {
 	historyItems.value.push(newItem);
-	if (!showHistoryPanelOnce && window.innerWidth > DESKTOP_WIDTH) {
+	if (
+		!showHistoryPanelOnce &&
+		window.innerWidth > DESKTOP_WIDTH &&
+		settings.value.quantity === "1"
+	) {
 		showHistoryPanel.value = true;
 		showHistoryPanelOnce = true;
 	}

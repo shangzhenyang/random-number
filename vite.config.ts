@@ -2,7 +2,6 @@ import { fileURLToPath, URL } from "node:url";
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import autoprefixer from "autoprefixer";
-import eslint from "@rollup/plugin-eslint";
 import { VitePWA } from "vite-plugin-pwa";
 
 // https://vitejs.dev/config/
@@ -14,12 +13,6 @@ export default defineConfig({
 	},
 	plugins: [
 		vue(),
-		{
-			...eslint({
-				include: ["src/**/*.{ts,tsx,vue}"]
-			}),
-			enforce: "pre"
-		},
 		VitePWA({
 			registerType: "autoUpdate",
 			manifest: {
@@ -27,7 +20,7 @@ export default defineConfig({
 				short_name: "Random",
 				id: "/",
 				theme_color: "#0066cc",
-				description: "",
+				description: "A random number generator with customized options including range, repetition, even/odd selection, and alias name labeling.",
 				icons: [{
 					src: "https://assets.retiehe.com/ysz/avatar.png",
 					sizes: "720x720",
