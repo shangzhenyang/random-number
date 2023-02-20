@@ -27,23 +27,19 @@ body {
 	font-family: sans-serif;
 	height: 100%;
 	margin: 0;
+	overflow: hidden;
 	-webkit-tap-highlight-color: transparent;
 	text-size-adjust: 100%;
 	user-select: none;
-}
-
-button {
-	color: inherit;
-	touch-action: manipulation;
 }
 
 button:disabled {
 	pointer-events: none;
 }
 
-html,
-#app {
+html {
 	height: 100%;
+	touch-action: manipulation;
 }
 
 li {
@@ -76,6 +72,7 @@ li>* {
 
 li button {
 	background-color: transparent;
+	color: inherit;
 	transition: background-color .25s;
 }
 
@@ -127,6 +124,10 @@ ul {
 	font-size: 24px;
 	font-weight: normal;
 	margin: 0;
+}
+
+#app {
+	height: 100%;
 }
 
 @keyframes fadeIn {
