@@ -27,6 +27,7 @@ const itemsShowing = computed(() => {
 			role="button"
 			tabindex="0"
 			v-on:click="() => item.onClick()"
+			v-on:keydown.enter="() => item.onClick()"
 		/>
 	</div>
 </template>
