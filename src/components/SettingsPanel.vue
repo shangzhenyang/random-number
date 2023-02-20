@@ -39,7 +39,7 @@ defineProps<{
 		/>
 		<NameList
 			v-bind:names="names"
-			v-bind:setNames="setNames"
+			v-bind:set-names="setNames"
 		/>
 	</div>
 </template>

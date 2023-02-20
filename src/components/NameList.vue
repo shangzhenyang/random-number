@@ -19,6 +19,17 @@ function deleteName(index: number) {
 	props.setNames(newNames);
 }
 
+function exportNames() {
+	const newA = document.createElement("a");
+	newA.href = URL.createObjectURL(new Blob([
+		props.names.join("\n")
+	], {
+		type: "text/plain"
+	}));
+	newA.download = "names.txt";
+	newA.click();
+}
+
 function importNames() {
 	const newInput = document.createElement("input");
 	newInput.type = "file";
@@ -29,7 +40,13 @@ function importNames() {
 			const reader = new FileReader();
 			reader.onload = () => {
 				if (typeof reader.result === "string") {
-					const newNames = reader.result.split("\n");
+					const newNames = reader.result.split("\n")
+						.filter((nameItem) => {
+							return !!nameItem;
+						})
+						.map((nameItem) => {
+							return nameItem.trim();
+						});
 					props.setNames(newNames);
 				}
 			};
@@ -52,9 +69,9 @@ function importNames() {
 				icon: ['fas', 'upload'],
 				title: $t('export'),
 				show: true,
-				onClick: () => { }
+				onClick: exportNames
 			}]"
-			iconSize="lg"
+			icon-size="lg"
 		>
 			<h2>{{ $t("names") }}</h2>
 		</TitleBar>
@@ -62,7 +79,7 @@ function importNames() {
 		<ul>
 			<NewName
 				v-bind:names="names"
-				v-bind:setNames="setNames"
+				v-bind:set-names="setNames"
 			/>
 			<template
 				v-for="(name, index) in names"
@@ -81,9 +98,9 @@ function importNames() {
 				<template v-else>
 					<NewName
 						v-bind:names="names"
-						v-bind:setNames="setNames"
+						v-bind:set-names="setNames"
 						v-bind:index="index"
-						v-bind:doneEditing="() => editingIndex = -1"
+						v-bind:done-editing="() => editingIndex = -1"
 					/>
 				</template>
 			</template>

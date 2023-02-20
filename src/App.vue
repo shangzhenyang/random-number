@@ -11,18 +11,15 @@ import type SettingsInfo from "@/types/SettingsInfo";
 
 const isDesktop = window.innerWidth > 1160;
 
-const historyItems = ref([] as string[]);
 const names = ref((() => {
 	try {
-		const names = localStorage.getItem("names");
-		if (names) {
-			return JSON.parse(names);
-		}
-		return [];
+		const storedNames = localStorage.getItem("names");
+		return storedNames ? JSON.parse(storedNames) : [];
 	} catch {
 		return [];
 	}
 })() as string[]);
+
 const settings = ref((() => {
 	const defaultValue = {
 		quantity: "1",
@@ -34,15 +31,26 @@ const settings = ref((() => {
 		evenOnly: false
 	};
 	try {
-		const settings = localStorage.getItem("settings");
-		if (settings) {
-			return JSON.parse(settings);
+		const storedSettings = localStorage.getItem("settings");
+		if (!storedSettings) {
+			return defaultValue;
 		}
-		return defaultValue;
+		const json = JSON.parse(storedSettings) as SettingsInfo;
+		if (
+			!json.minimum ||
+			!json.maximum ||
+			parseInt(json.minimum) >= parseInt(json.maximum)
+		) {
+			json.minimum = defaultValue.minimum;
+			json.maximum = defaultValue.maximum;
+		}
+		return json;
 	} catch {
 		return defaultValue;
 	}
 })() as SettingsInfo);
+
+const historyItems = ref([] as string[]);
 const showHistoryPanel = ref(false);
 const showSettingsPanel = ref(isDesktop);
 
@@ -76,6 +84,9 @@ function setInputValue(key: string): ((evt: Event) => void) {
 			}
 			(newSettings[key as keyof typeof newSettings] as boolean) =
 				target.checked;
+			if (!newSettings.repeat) {
+				historyItems.value = [];
+			}
 		} else {
 			const hasMaxLimit = ["quantity", "speed"];
 			if (hasMaxLimit.includes(key)) {
@@ -86,8 +97,7 @@ function setInputValue(key: string): ((evt: Event) => void) {
 			(newSettings[key as keyof typeof newSettings] as string) =
 				target.value;
 		}
-		settings.value = newSettings;
-		localStorage.setItem("settings", JSON.stringify(newSettings));
+		setSettings(newSettings);
 	};
 }
 
@@ -95,9 +105,17 @@ function setNames(newValue: string[]) {
 	names.value = newValue;
 	localStorage.setItem("names", JSON.stringify(newValue));
 
-	settings.value.minimum = "1";
-	settings.value.maximum = newValue.length === 0 ?
+	const newSettings = { ...settings.value };
+	newSettings.minimum = "1";
+	newSettings.maximum = newValue.length === 0 ?
 		"60" : newValue.length.toString();
+	setSettings(newSettings);
+}
+
+function setSettings(newValue: SettingsInfo) {
+	settings.value = newValue;
+	showSettingsPanel.value = true;
+	localStorage.setItem("settings", JSON.stringify(newValue));
 }
 </script>
 
@@ -105,8 +123,8 @@ function setNames(newValue: string[]) {
 	<div class="app">
 		<HistoryPanel
 			v-bind:show="showHistoryPanel"
-			v-bind:historyItems="historyItems"
-			v-bind:closePanel="() => {
+			v-bind:history-items="historyItems"
+			v-bind:close-panel="() => {
 				showHistoryPanel = false;
 			}"
 			v-bind:set-history-items="(newValue) => {
@@ -118,9 +136,11 @@ function setNames(newValue: string[]) {
 				<NumberArea
 					v-for="index in parseInt(settings.quantity)"
 					v-bind:key="index"
+					v-bind:history-items="historyItems"
 					v-bind:names="names"
 					v-bind:settings="settings"
 					v-bind:addHistoryItem="addHistoryItem"
+					v-bind:set-settings="setSettings"
 				/>
 			</div>
 			<FooterArea />

@@ -34,10 +34,6 @@ defineProps<{
 </template>
 
 <style scoped>
-.checkbox {
-	margin-top: 10px;
-}
-
 .input-bar {
 	align-items: center;
 	display: flex;
@@ -59,6 +55,10 @@ defineProps<{
 	font-size: inherit;
 	padding: 10px 15px;
 	width: 70%;
+}
+
+.input-bar.checkbox {
+	margin-top: 10px;
 }
 
 .spacer {
