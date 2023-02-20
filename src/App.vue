@@ -143,31 +143,6 @@ function setSettings(newValue: SettingsInfo) {
 					v-bind:set-settings="setSettings"
 				/>
 			</div>
-			<FooterArea />
-			<IconBar
-				class="corner-icons"
-				v-bind:items="[{
-					icon: ['fas', 'gear'],
-					show: !showSettingsPanel,
-					title: $t('settings'),
-					onClick: () => {
-						showSettingsPanel = !showSettingsPanel;
-					}
-				}, {
-					icon: ['fas', 'clock-rotate-left'],
-					show: !showHistoryPanel,
-					title: $t('history'),
-					onClick: () => {
-						showHistoryPanel = !showHistoryPanel;
-					}
-				}, {
-					icon: ['fab', 'github'],
-					show: true,
-					title: 'GitHub',
-					onClick: openGitHub
-				}]"
-				size="xl"
-			/>
 		</main>
 		<SettingsPanel
 			v-bind:show="showSettingsPanel"
@@ -178,6 +153,31 @@ function setSettings(newValue: SettingsInfo) {
 			}"
 			v-bind:setInputValue="setInputValue"
 			v-bind:setNames="setNames"
+		/>
+		<FooterArea />
+		<IconBar
+			class="corner-icons"
+			v-bind:items="[{
+				icon: ['fas', 'gear'],
+				show: !showSettingsPanel,
+				title: $t('settings'),
+				onClick: () => {
+					showSettingsPanel = !showSettingsPanel;
+				}
+			}, {
+				icon: ['fas', 'clock-rotate-left'],
+				show: !showHistoryPanel,
+				title: $t('history'),
+				onClick: () => {
+					showHistoryPanel = !showHistoryPanel;
+				}
+			}, {
+				icon: ['fab', 'github'],
+				show: true,
+				title: 'GitHub',
+				onClick: openGitHub
+			}]"
+			size="xl"
 		/>
 	</div>
 </template>
@@ -201,7 +201,6 @@ main {
 	right: 0;
 	padding: 20px;
 	position: fixed;
-	z-index: 2;
 }
 
 .number-areas {

@@ -16,7 +16,7 @@ defineProps<{
 </script>
 
 <template>
-	<div v-if="show" class="panel">
+	<div v-if="show" class="panel panel-right">
 		<TitleBar
 			v-bind:icons="[{
 				icon: ['fas', 'xmark'],

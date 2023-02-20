@@ -101,14 +101,13 @@ ul {
 	max-width: 100%;
 	overflow: auto;
 	padding: 20px 20px 50px;
-	z-index: 1;
 }
 
-.panel:first-of-type {
+.panel-left {
 	border-right-width: 1px;
 }
 
-.panel:last-of-type {
+.panel-right {
 	border-left-width: 1px;
 }
 

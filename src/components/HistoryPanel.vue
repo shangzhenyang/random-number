@@ -16,7 +16,7 @@ function deleteHistoryItem(index: number) {
 </script>
 
 <template>
-	<div v-if="show" class="panel">
+	<div v-if="show" class="panel panel-left">
 		<TitleBar
 			v-bind:icons="[{
 				icon: ['fas', 'delete-left'],
