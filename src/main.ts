@@ -12,6 +12,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import i18next from "i18next";
 import I18NextVue from "i18next-vue";
+import VueGtag from "vue-gtag";
 
 import "@/style.css";
 import App from "@/App.vue";
@@ -69,4 +70,9 @@ document.title = i18next.t("randomNumber");
 createApp(App)
 	.component("font-awesome-icon", FontAwesomeIcon)
 	.use(I18NextVue, { i18next })
+	.use(VueGtag, {
+		config: {
+			id: "G-VLJ52KB4ZZ"
+		}
+	})
 	.mount("#app");
