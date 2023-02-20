@@ -7,6 +7,7 @@ import IconBar from "@/components/IconBar.vue";
 import NumberArea from "@/components/NumberArea.vue";
 import SettingsPanel from "@/components/SettingsPanel.vue";
 
+import type { Ref } from "vue";
 import type SettingsInfo from "@/types/SettingsInfo";
 
 const DESKTOP_WIDTH = 1160;
@@ -121,6 +122,21 @@ function setSettings(newValue: SettingsInfo) {
 	showSettingsPanel.value = true;
 	localStorage.setItem("settings", JSON.stringify(newValue));
 }
+
+function togglePanel(panelToShow: Ref<boolean>, panelToHide: Ref<boolean>) {
+	if (!panelToShow.value && window.innerWidth <= DESKTOP_WIDTH) {
+		panelToHide.value = false;
+	}
+	panelToShow.value = !panelToShow.value;
+}
+
+function toggleHistoryPanel() {
+	togglePanel(showHistoryPanel, showSettingsPanel);
+}
+
+function toggleSettingsPanel() {
+	togglePanel(showSettingsPanel, showHistoryPanel);
+}
 </script>
 
 <template>
@@ -165,16 +181,12 @@ function setSettings(newValue: SettingsInfo) {
 				icon: ['fas', 'gear'],
 				show: !showSettingsPanel,
 				title: $t('settings'),
-				onClick: () => {
-					showSettingsPanel = !showSettingsPanel;
-				}
+				onClick: toggleSettingsPanel
 			}, {
 				icon: ['fas', 'clock-rotate-left'],
 				show: !showHistoryPanel,
 				title: $t('history'),
-				onClick: () => {
-					showHistoryPanel = !showHistoryPanel;
-				}
+				onClick: toggleHistoryPanel
 			}, {
 				icon: ['fab', 'github'],
 				show: true,
