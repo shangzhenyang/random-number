@@ -1,4 +1,10 @@
 :root {
+	--bg-body: white;
+	--fg-alpha-05: rgba(0, 0, 0, .05);
+	--fg-alpha-1: rgba(0, 0, 0, .1);
+	--fg-alpha-2: rgba(0, 0, 0, .2);
+	--fg-alpha-25: rgba(0, 0, 0, .25);
+	--fg-alpha-5: rgba(0, 0, 0, .5);
 	--theme-color: rgb(0, 102, 204);
 }
 
@@ -15,6 +21,7 @@
 }
 
 body {
+	background-color: var(--bg-body);
 	color: rgba(0, 0, 0, .8);
 	cursor: default;
 	font-family: sans-serif;
@@ -37,7 +44,7 @@ html,
 li {
 	--radius: 5px;
 	align-items: center;
-	background-color: rgba(0, 0, 0, .1);
+	background-color: var(--fg-alpha-1);
 	display: flex;
 	overflow: hidden;
 }
@@ -53,7 +60,7 @@ li:last-of-type {
 }
 
 li:nth-child(even) {
-	background-color: rgba(0, 0, 0, .05);
+	background-color: var(--fg-alpha-05);
 }
 
 li>* {
@@ -69,11 +76,11 @@ li button {
 
 li button:focus,
 li button:hover {
-	background-color: rgba(0, 0, 0, .2);
+	background-color: var(--fg-alpha-2);
 }
 
 li button:active {
-	background-color: rgba(0, 0, 0, .25);
+	background-color: var(--fg-alpha-25);
 }
 
 li .list-item-main {
@@ -91,8 +98,8 @@ ul {
 
 .panel {
 	animation: fadeIn .25s;
-	background-color: white;
-	border: 0 solid rgba(0, 0, 0, .1);
+	background-color: var(--bg-body);
+	border: 0 solid var(--fg-alpha-1);
 	display: flex;
 	flex: 0 0 400px;
 	flex-direction: column;
@@ -137,33 +144,16 @@ ul {
 
 @media (prefers-color-scheme: dark) {
 	:root {
+		--bg-body: rgb(30, 30, 30);
+		--fg-alpha-05: rgba(255, 255, 255, .05);
+		--fg-alpha-1: rgba(255, 255, 255, .1);
+		--fg-alpha-2: rgba(255, 255, 255, .2);
+		--fg-alpha-25: rgba(255, 255, 255, .25);
+		--fg-alpha-5: rgba(255, 255, 255, .5);
 		color-scheme: dark;
 	}
 
 	body {
-		background-color: rgb(30, 30, 30);
 		color: whitesmoke;
-	}
-
-	li {
-		background-color: rgba(255, 255, 255, .1);
-	}
-
-	li:nth-child(even) {
-		background-color: rgba(255, 255, 255, .05);
-	}
-
-	li button:focus,
-	li button:hover {
-		background-color: rgba(255, 255, 255, .2);
-	}
-
-	li button:active {
-		background-color: rgba(255, 255, 255, .25);
-	}
-
-	.panel {
-		background-color: rgb(30, 30, 30);
-		border-color: rgba(255, 255, 255, .1);
 	}
 }

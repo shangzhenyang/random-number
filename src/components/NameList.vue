@@ -21,9 +21,7 @@ function deleteName(index: number) {
 
 function exportNames() {
 	const newA = document.createElement("a");
-	newA.href = URL.createObjectURL(new Blob([
-		props.names.join("\n")
-	], {
+	newA.href = URL.createObjectURL(new Blob([props.names.join("\n")], {
 		type: "text/plain"
 	}));
 	newA.download = "names.txt";

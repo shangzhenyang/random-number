@@ -49,7 +49,7 @@ defineProps<{
 }
 
 .input-bar input[type=number] {
-	background-color: rgba(0, 0, 0, .1);
+	background-color: var(--fg-alpha-1);
 	border: none;
 	border-radius: 5px;
 	font-size: inherit;
@@ -62,17 +62,7 @@ defineProps<{
 }
 
 .spacer {
-	border-bottom: 1px solid rgba(0, 0, 0, .1);
+	border-bottom: 1px solid var(--fg-alpha-1);
 	flex: 1;
-}
-
-@media (prefers-color-scheme: dark) {
-	.input-bar input[type=number] {
-		background-color: rgba(255, 255, 255, .1);
-	}
-
-	.spacer {
-		border-bottom: 1px solid rgba(255, 255, 255, .1);
-	}
 }
 </style>

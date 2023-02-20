@@ -116,7 +116,7 @@ function toggleScrolling() {
 <style scoped>
 .main-btn {
 	background-color: var(--theme-color);
-	border: 1px solid rgba(0, 0, 0, .2);
+	border: 1px solid var(--fg-alpha-2);
 	border-radius: 5px;
 	color: white;
 	font-size: 24px;
@@ -148,7 +148,7 @@ function toggleScrolling() {
 
 .number-box {
 	align-items: center;
-	border: 1px solid rgba(0, 0, 0, .2);
+	border: 1px solid var(--fg-alpha-2);
 	border-radius: 5px;
 	display: flex;
 	font-size: 64px;
@@ -161,13 +161,5 @@ function toggleScrolling() {
 
 .number-box.name {
 	font-size: 40px;
-}
-
-@media (prefers-color-scheme: dark) {
-
-	.main-btn,
-	.number-box {
-		border-color: rgba(255, 255, 255, .2);
-	}
 }
 </style>

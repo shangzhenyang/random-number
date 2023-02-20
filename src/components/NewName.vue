@@ -59,20 +59,10 @@ function saveName() {
 }
 
 .list-input-bar input:focus {
-	background-color: rgba(0, 0, 0, .1);
+	background-color: var(--fg-alpha-1);
 }
 
 .list-input-bar input::placeholder {
-	color: rgba(0, 0, 0, .5);
-}
-
-@media (prefers-color-scheme: dark) {
-	.list-input-bar input:focus {
-		background-color: rgba(255, 255, 255, .1);
-	}
-
-	.list-input-bar input::placeholder {
-		color: rgba(255, 255, 255, .5);
-	}
+	color: var(--fg-alpha-5);
 }
 </style>
