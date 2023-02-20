@@ -9,7 +9,7 @@ import SettingsPanel from "@/components/SettingsPanel.vue";
 
 import type SettingsInfo from "@/types/SettingsInfo";
 
-const isDesktop = window.innerWidth > 1160;
+const DESKTOP_WIDTH = 1160;
 
 const names = ref((() => {
 	try {
@@ -52,13 +52,13 @@ const settings = ref((() => {
 
 const historyItems = ref([] as string[]);
 const showHistoryPanel = ref(false);
-const showSettingsPanel = ref(isDesktop);
+const showSettingsPanel = ref(window.innerWidth > DESKTOP_WIDTH);
 
 let showHistoryPanelOnce = false;
 
 function addHistoryItem(newItem: string) {
 	historyItems.value.push(newItem);
-	if (isDesktop && !showHistoryPanelOnce) {
+	if (!showHistoryPanelOnce && window.innerWidth > DESKTOP_WIDTH) {
 		showHistoryPanel.value = true;
 		showHistoryPanelOnce = true;
 	}
@@ -201,6 +201,7 @@ main {
 	right: 0;
 	padding: 20px;
 	position: fixed;
+	z-index: 2;
 }
 
 .number-areas {

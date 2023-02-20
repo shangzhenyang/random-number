@@ -51,4 +51,10 @@ const itemsShowing = computed(() => {
 .icon:active {
 	transform: scale(0.9);
 }
+
+@media screen and (max-width: 800px) {
+	.icon-bar {
+		gap: 30px;
+	}
+}
 </style>

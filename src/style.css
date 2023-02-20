@@ -4,7 +4,14 @@
 
 * {
 	box-sizing: border-box;
+}
+
+*:focus:not(:focus-visible) {
 	outline: none;
+}
+
+*:focus-visible {
+	outline: auto;
 }
 
 body {
@@ -83,6 +90,9 @@ ul {
 }
 
 .panel {
+	animation: fadeIn .25s;
+	background-color: white;
+	border: 0 solid rgba(0, 0, 0, .1);
 	display: flex;
 	flex: 0 0 400px;
 	flex-direction: column;
@@ -91,12 +101,39 @@ ul {
 	max-width: 100%;
 	overflow: auto;
 	padding: 20px 20px 50px;
+	z-index: 1;
+}
+
+.panel:first-of-type {
+	border-right-width: 1px;
+}
+
+.panel:last-of-type {
+	border-left-width: 1px;
 }
 
 .panel h1 {
 	font-size: 24px;
 	font-weight: normal;
 	margin: 0;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+@media screen and (max-width: 800px) {
+	.panel {
+		border: none;
+		position: fixed;
+		width: 100%;
+	}
 }
 
 @media (prefers-color-scheme: dark) {
@@ -124,5 +161,10 @@ ul {
 
 	li button:active {
 		background-color: rgba(255, 255, 255, .25);
+	}
+
+	.panel {
+		background-color: rgb(30, 30, 30);
+		border-color: rgba(255, 255, 255, .1);
 	}
 }

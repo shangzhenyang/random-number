@@ -48,15 +48,3 @@ function deleteHistoryItem(index: number) {
 		</ul>
 	</div>
 </template>
-
-<style scoped>
-.panel {
-	border-right: 1px solid rgba(0, 0, 0, .2);
-}
-
-@media (prefers-color-scheme: dark) {
-	.panel {
-		border-right-color: rgba(255, 255, 255, .2);
-	}
-}
-</style>

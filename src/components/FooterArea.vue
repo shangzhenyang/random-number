@@ -15,5 +15,6 @@ footer {
 	left: 0;
 	padding: 20px;
 	position: fixed;
+	z-index: 2;
 }
 </style>
