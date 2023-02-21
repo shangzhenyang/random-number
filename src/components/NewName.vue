@@ -55,6 +55,7 @@ function saveName() {
 <style scoped>
 .list-input-bar input {
 	background-color: transparent;
+	border-radius: 0;
 	transition: background-color .25s;
 }
 
