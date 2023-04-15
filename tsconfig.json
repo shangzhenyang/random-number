@@ -1,21 +1,39 @@
 {
-	"extends": "@vue/tsconfig/tsconfig.web.json",
-	"include": [
-		"env.d.ts",
-		"src/**/*",
-		"src/**/*.vue"
-	],
 	"compilerOptions": {
+		"target": "ESNext",
+		"lib": [
+			"DOM",
+			"DOM.Iterable",
+			"ESNext"
+		],
 		"baseUrl": ".",
+		"skipLibCheck": true,
+		"esModuleInterop": true,
+		"strict": true,
+		"forceConsistentCasingInFileNames": true,
+		"module": "ESNext",
+		"moduleResolution": "Node",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"useDefineForClassFields": true,
+		"verbatimModuleSyntax": true,
+		"jsx": "preserve",
 		"paths": {
 			"@/*": [
 				"./src/*"
 			]
-		}
+		},
+		"types": [
+			"node"
+		]
 	},
-	"references": [
-		{
-			"path": "./tsconfig.config.json"
-		}
+	"include": [
+		"env.d.ts",
+		"src/**/*",
+		"src/**/*.vue",
+		"vite.config.*",
+		"vitest.config.*",
+		"cypress.config.*",
+		"playwright.config.*"
 	]
 }
