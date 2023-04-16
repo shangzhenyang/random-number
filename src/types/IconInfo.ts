@@ -5,4 +5,4 @@ interface IconInfo {
 	onClick: () => void;
 }
 
-export default IconInfo;
+export type { IconInfo as default };

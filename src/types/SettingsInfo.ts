@@ -8,4 +8,4 @@ interface SettingsInfo {
 	evenOnly: boolean;
 }
 
-export default SettingsInfo;
+export type { SettingsInfo as default };
