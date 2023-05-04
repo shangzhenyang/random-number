@@ -22,7 +22,7 @@ export default defineConfig({
 				theme_color: "#0066cc",
 				description: "A random number generator with customizable options including range, repetition, even/odd selection, and alias name labeling.",
 				icons: [{
-					src: "https://assets.retiehe.com/ysz/avatar.png",
+					src: "https://www.shangzhenyang.com/images/avatar.png",
 					sizes: "720x720",
 					type: "image/png",
 					purpose: "any"

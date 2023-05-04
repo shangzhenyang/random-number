@@ -65,7 +65,7 @@ library.add(
 );
 
 document.documentElement.lang = lang;
-document.title = i18next.t("randomNumber");
+document.title = i18next.t("randomNumberByShangzhen");
 
 createApp(App)
 	.component("font-awesome-icon", FontAwesomeIcon)
