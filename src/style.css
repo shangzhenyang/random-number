@@ -96,6 +96,7 @@ li .list-item-main {
 }
 
 ul {
+	margin: 0;
 	padding-inline-start: 0;
 }
 

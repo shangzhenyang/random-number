@@ -24,6 +24,7 @@ defineProps<{
 	align-items: center;
 	display: flex;
 	justify-content: space-between;
+	margin-bottom: 10px;
 	padding-right: 5px;
 }
 </style>

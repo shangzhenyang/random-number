@@ -115,6 +115,7 @@ h2 {
 
 .description {
 	font-size: 14px;
+	margin-bottom: 15px;
 	opacity: .8;
 }
 
