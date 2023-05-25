@@ -10,8 +10,8 @@ const props = defineProps<{
 	setNames: (newValue: string[]) => void;
 }>();
 
-const description = ref(i18next.t("importNamesDescription"));
-const editingIndex = ref(-1);
+const description = ref<string>(i18next.t("importNamesDescription"));
+const editingIndex = ref<number>(-1);
 
 function deleteName(index: number) {
 	const newNames = [...props.names];

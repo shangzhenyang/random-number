@@ -12,16 +12,16 @@ import type SettingsInfo from "@/types/SettingsInfo";
 
 const DESKTOP_WIDTH = 1160;
 
-const names = ref((() => {
+const names = ref<string[]>((() => {
 	try {
 		const storedNames = localStorage.getItem("names");
 		return storedNames ? JSON.parse(storedNames) : [];
 	} catch {
 		return [];
 	}
-})() as string[]);
+})());
 
-const settings = ref((() => {
+const settings = ref<SettingsInfo>((() => {
 	const defaultValue = {
 		quantity: "1",
 		minimum: "1",
@@ -49,11 +49,11 @@ const settings = ref((() => {
 	} catch {
 		return defaultValue;
 	}
-})() as SettingsInfo);
+})());
 
-const historyItems = ref([] as string[]);
-const showHistoryPanel = ref(false);
-const showSettingsPanel = ref(window.innerWidth > DESKTOP_WIDTH);
+const historyItems = ref<string[]>([]);
+const showHistoryPanel = ref<boolean>(false);
+const showSettingsPanel = ref<boolean>(window.innerWidth > DESKTOP_WIDTH);
 
 let showHistoryPanelOnce = false;
 
@@ -147,7 +147,7 @@ function toggleSettingsPanel() {
 			v-bind:close-panel="() => {
 				showHistoryPanel = false;
 			}"
-			v-bind:set-history-items="(newValue) => {
+			v-bind:set-history-items="(newValue: string[]) => {
 				historyItems = newValue;
 			}"
 		/>

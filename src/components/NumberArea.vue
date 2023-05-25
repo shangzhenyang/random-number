@@ -11,8 +11,8 @@ const props = defineProps<{
 	setSettings: (newValue: SettingsInfo) => void;
 }>();
 
-const isScrolling = ref(false);
-const number = ref("0"); // string for names
+const isScrolling = ref<boolean>(false);
+const number = ref<string>("0"); // string for names
 
 let timeoutId: number;
 
