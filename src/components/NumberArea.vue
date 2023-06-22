@@ -14,7 +14,7 @@ const props = defineProps<{
 const isScrolling = ref<boolean>(false);
 const number = ref<string>("0"); // string for names
 
-let timeoutId: number;
+let timeoutId: number | undefined = undefined;
 
 function getRandomInt(min: number, max: number): number {
 	return Math.floor((Math.random() * (max - min + 1)) + min);
@@ -64,7 +64,7 @@ function getRandomValue(): string {
 	return result;
 }
 
-function startScrolling() {
+function startScrolling(): void {
 	// uses setTimeout instead of setInterval to dynamically change the speed
 	timeoutId = window.setTimeout(() => {
 		try {
@@ -73,19 +73,19 @@ function startScrolling() {
 			if (isScrolling.value) {
 				startScrolling();
 			}
-		} catch (err) {
-			console.error(err);
+		} catch (error) {
+			console.error(error);
 			localStorage.clear();
 			window.location.reload();
 		}
 	}, 1000 / parseInt(props.settings.speed));
 }
 
-function stopScrolling() {
-	window.clearTimeout(timeoutId);
+function stopScrolling(): void {
+	clearTimeout(timeoutId);
 }
 
-function toggleScrolling() {
+function toggleScrolling(): void {
 	if (isScrolling.value) {
 		stopScrolling();
 		const randomValue = getRandomValue();

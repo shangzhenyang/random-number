@@ -5,7 +5,7 @@ defineProps<{
 	isCheckBox: boolean;
 	labelValue: string;
 	value: string | boolean;
-	setValue: (evt: Event) => void;
+	setValue: (event: Event) => void;
 }>();
 </script>
 

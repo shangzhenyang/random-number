@@ -8,7 +8,7 @@
 		"plugin:vue/vue3-essential",
 		"@vue/eslint-config-typescript"
 	],
-	"overrides": [],
+	"overrides": [ ],
 	"parser": "vue-eslint-parser",
 	"parserOptions": {
 		"parser": "@typescript-eslint/parser",
@@ -62,6 +62,7 @@
 		"semi": [
 			"error",
 			"always"
-		]
+		],
+		"@typescript-eslint/explicit-function-return-type": "error"
 	}
 }

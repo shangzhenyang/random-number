@@ -10,7 +10,7 @@ defineProps<{
 	names: string[];
 	settings: SettingsInfo;
 	closePanel: () => void;
-	setInputValue: (key: string) => ((evt: Event) => void);
+	setInputValue: (key: string) => ((event: Event) => void);
 	setNames: (newValue: string[]) => void;
 }>();
 </script>

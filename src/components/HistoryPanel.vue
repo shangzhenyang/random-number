@@ -8,7 +8,7 @@ const props = defineProps<{
 	setHistoryItems: (newValue: string[]) => void;
 }>();
 
-function deleteHistoryItem(index: number) {
+function deleteHistoryItem(index: number): void {
 	const newHistoryItems = [...props.historyItems];
 	newHistoryItems.splice(index, 1);
 	props.setHistoryItems(newHistoryItems);

@@ -11,7 +11,7 @@ const props = defineProps<{
 const newName = ref<string>(props.index !== undefined ?
 	props.names[props.index] : "");
 
-function saveName() {
+function saveName(): void {
 	if (newName.value) {
 		if (props.index !== undefined) {
 			const newNames = [...props.names];

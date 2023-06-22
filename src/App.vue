@@ -12,7 +12,7 @@ import type SettingsInfo from "@/types/SettingsInfo";
 
 const DESKTOP_WIDTH = 1160;
 
-const names = ref<string[]>((() => {
+const names = ref<string[]>(((): string[] => {
 	try {
 		const storedNames = localStorage.getItem("names");
 		return storedNames ? JSON.parse(storedNames) : [];
@@ -21,7 +21,7 @@ const names = ref<string[]>((() => {
 	}
 })());
 
-const settings = ref<SettingsInfo>((() => {
+const settings = ref<SettingsInfo>(((): SettingsInfo => {
 	const defaultValue = {
 		quantity: "1",
 		minimum: "1",
@@ -57,7 +57,7 @@ const showSettingsPanel = ref<boolean>(window.innerWidth > DESKTOP_WIDTH);
 
 let showHistoryPanelOnce = false;
 
-function addHistoryItem(newItem: string) {
+function addHistoryItem(newItem: string): void {
 	historyItems.value.push(newItem);
 	if (
 		!showHistoryPanelOnce &&
@@ -69,13 +69,13 @@ function addHistoryItem(newItem: string) {
 	}
 }
 
-function openGitHub() {
+function openGitHub(): void {
 	window.open("https://github.com/shangzhenyang/random-number");
 }
 
-function setInputValue(key: string): ((evt: Event) => void) {
-	return (evt: Event) => {
-		const target = evt.target as HTMLInputElement;
+function setInputValue(key: string): ((event: Event) => void) {
+	return (event: Event) => {
+		const target = event.target as HTMLInputElement;
 		const newSettings = { ...settings.value };
 		if (target.type === "checkbox") {
 			const conflicts = {
@@ -106,7 +106,7 @@ function setInputValue(key: string): ((evt: Event) => void) {
 	};
 }
 
-function setNames(newValue: string[]) {
+function setNames(newValue: string[]): void {
 	names.value = newValue;
 	localStorage.setItem("names", JSON.stringify(newValue));
 
@@ -117,24 +117,27 @@ function setNames(newValue: string[]) {
 	setSettings(newSettings);
 }
 
-function setSettings(newValue: SettingsInfo) {
+function setSettings(newValue: SettingsInfo): void {
 	settings.value = newValue;
 	showSettingsPanel.value = true;
 	localStorage.setItem("settings", JSON.stringify(newValue));
 }
 
-function togglePanel(panelToShow: Ref<boolean>, panelToHide: Ref<boolean>) {
+function togglePanel(
+	panelToShow: Ref<boolean>,
+	panelToHide: Ref<boolean>
+): void {
 	if (!panelToShow.value && window.innerWidth <= DESKTOP_WIDTH) {
 		panelToHide.value = false;
 	}
 	panelToShow.value = !panelToShow.value;
 }
 
-function toggleHistoryPanel() {
+function toggleHistoryPanel(): void {
 	togglePanel(showHistoryPanel, showSettingsPanel);
 }
 
-function toggleSettingsPanel() {
+function toggleSettingsPanel(): void {
 	togglePanel(showSettingsPanel, showHistoryPanel);
 }
 </script>

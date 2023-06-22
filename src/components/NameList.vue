@@ -13,13 +13,13 @@ const props = defineProps<{
 const description = ref<string>(i18next.t("importNamesDescription"));
 const editingIndex = ref<number>(-1);
 
-function deleteName(index: number) {
+function deleteName(index: number): void {
 	const newNames = [...props.names];
 	newNames.splice(index, 1);
 	props.setNames(newNames);
 }
 
-function exportNames() {
+function exportNames(): void {
 	const newA = document.createElement("a");
 	newA.href = URL.createObjectURL(new Blob([props.names.join("\n")], {
 		type: "text/plain"
@@ -28,15 +28,15 @@ function exportNames() {
 	newA.click();
 }
 
-function importNames() {
+function importNames(): void {
 	const newInput = document.createElement("input");
 	newInput.type = "file";
 	newInput.accept = ".txt";
-	newInput.onchange = () => {
+	newInput.onchange = (): void => {
 		if (newInput.files && newInput.files.length > 0) {
 			const file = newInput.files[0];
 			const reader = new FileReader();
-			reader.onload = () => {
+			reader.onload = (): void => {
 				if (typeof reader.result === "string") {
 					const newNames = reader.result.split("\n")
 						.filter((nameItem) => {
