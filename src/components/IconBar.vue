@@ -1,7 +1,6 @@
 <script setup lang="ts">
+import { IconInfo } from "@/types";
 import { computed } from "vue";
-
-import type IconInfo from "@/types/IconInfo";
 
 const props = defineProps<{
 	items: IconInfo[];
@@ -17,18 +16,7 @@ const itemsShowing = computed(() => {
 
 <template>
 	<div class="icon-bar">
-		<font-awesome-icon
-			v-for="item in itemsShowing"
-			v-bind:key="item.title"
-			v-bind:icon="item.icon"
-			v-bind:size="size"
-			v-bind:title="item.title"
-			class="icon"
-			role="button"
-			tabindex="0"
-			v-on:click="() => item.onClick()"
-			v-on:keydown.enter="() => item.onClick()"
-		/>
+		<font-awesome-icon v-for="item in itemsShowing" v-bind:key="item.title" v-bind:icon="item.icon" v-bind:size="size" v-bind:title="item.title" class="icon" role="button" tabindex="0" v-on:click="() => item.onClick()" v-on:keydown.enter="() => item.onClick()" />
 	</div>
 </template>
 

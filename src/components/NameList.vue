@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import i18next from "i18next";
-
 import NewName from "@/components/NewName.vue";
 import TitleBar from "@/components/TitleBar.vue";
+import i18next from "i18next";
+import { ref } from "vue";
 
 const props = defineProps<{
 	names: string[];
@@ -22,7 +21,7 @@ function deleteName(index: number): void {
 function exportNames(): void {
 	const newA = document.createElement("a");
 	newA.href = URL.createObjectURL(new Blob([props.names.join("\n")], {
-		type: "text/plain"
+		type: "text/plain",
 	}));
 	newA.download = "names.txt";
 	newA.click();
@@ -57,31 +56,26 @@ function importNames(): void {
 
 <template>
 	<section>
-		<TitleBar
-			v-bind:icons="[{
+		<TitleBar v-bind:icons="[
+			{
 				icon: ['fas', 'download'],
 				title: $t('import'),
 				show: true,
 				onClick: importNames
-			}, {
+			},
+			{
 				icon: ['fas', 'upload'],
 				title: $t('export'),
 				show: true,
 				onClick: exportNames
-			}]"
-			icon-size="lg"
-		>
+			},
+		]" icon-size="lg">
 			<h2>{{ $t("names") }}</h2>
 		</TitleBar>
 		<div class="description">{{ description }}</div>
 		<ul>
-			<NewName
-				v-bind:names="names"
-				v-bind:set-names="setNames"
-			/>
-			<template
-				v-for="(name, index) in names"
-				v-bind:key="index">
+			<NewName v-bind:names="names" v-bind:set-names="setNames" />
+			<template v-for="(name, index) in names" v-bind:key="index">
 				<template v-if="editingIndex !== index">
 					<li>
 						<div class="list-item-main">{{ name }}</div>
@@ -94,12 +88,7 @@ function importNames(): void {
 					</li>
 				</template>
 				<template v-else>
-					<NewName
-						v-bind:names="names"
-						v-bind:set-names="setNames"
-						v-bind:index="index"
-						v-bind:done-editing="() => editingIndex = -1"
-					/>
+					<NewName v-bind:names="names" v-bind:set-names="setNames" v-bind:index="index" v-bind:done-editing="() => editingIndex = -1" />
 				</template>
 			</template>
 		</ul>

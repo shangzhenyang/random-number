@@ -2,8 +2,7 @@
 import InputBar from "@/components/InputBar.vue";
 import NameList from "@/components/NameList.vue";
 import TitleBar from "@/components/TitleBar.vue";
-
-import type SettingsInfo from "@/types/SettingsInfo";
+import { SettingsInfo } from "@/types";
 
 defineProps<{
 	show: boolean;
@@ -13,33 +12,29 @@ defineProps<{
 	setInputValue: (key: string) => ((event: Event) => void);
 	setNames: (newValue: string[]) => void;
 }>();
+
+const settingsItems: (keyof SettingsInfo)[] = [
+	"quantity",
+	"minimum",
+	"maximum",
+	"speed",
+	"repeat",
+	"oddOnly",
+	"evenOnly",
+];
 </script>
 
 <template>
 	<div v-if="show" class="panel panel-right">
-		<TitleBar
-			v-bind:icons="[{
-				icon: ['fas', 'xmark'],
-				title: $t('close'),
-				show: true,
-				onClick: closePanel
-			}]"
-			icon-size="xl"
-		>
+		<TitleBar v-bind:icons="[{
+			icon: ['fas', 'xmark'],
+			title: $t('close'),
+			show: true,
+			onClick: closePanel
+		}]" icon-size="xl">
 			<h1>{{ $t("settings") }}</h1>
 		</TitleBar>
-		<InputBar
-			v-for="(value, key) in settings"
-			v-bind:key="key"
-			v-bind:id="key"
-			v-bind:is-check-box="typeof value === 'boolean'"
-			v-bind:label-value="$t(key)"
-			v-bind:value="value"
-			v-bind:set-value="setInputValue(key)"
-		/>
-		<NameList
-			v-bind:names="names"
-			v-bind:set-names="setNames"
-		/>
+		<InputBar v-for="item in settingsItems" v-bind:key="item" v-bind:id="item" v-bind:is-check-box="typeof settings[item] === 'boolean'" v-bind:label-value="$t(item)" v-bind:value="settings[item]" v-bind:set-value="setInputValue(item)" />
+		<NameList v-bind:names="names" v-bind:set-names="setNames" />
 	</div>
 </template>

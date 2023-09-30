@@ -1,6 +1,9 @@
-import { createApp } from "vue";
+import App from "@/App.vue";
+import "@/style.css";
+import translationEnUs from "@/translations/en-us.json";
+import translationZhCn from "@/translations/zh-cn.json";
+import translationZhTw from "@/translations/zh-tw.json";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import {
 	faClockRotateLeft,
@@ -8,29 +11,24 @@ import {
 	faDownload,
 	faGear,
 	faUpload,
-	faXmark
+	faXmark,
 } from "@fortawesome/free-solid-svg-icons";
-import i18next from "i18next";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import i18next, { t } from "i18next";
 import I18NextVue from "i18next-vue";
+import { ComponentOptions, createApp } from "vue";
 import VueGtag from "vue-gtag";
-
-import "@/style.css";
-import App from "@/App.vue";
-
-import translationEnUs from "./translations/en-us.json";
-import translationZhCn from "./translations/zh-cn.json";
-import translationZhTw from "./translations/zh-tw.json";
 
 const i18nResources = {
 	"en-US": {
-		translation: translationEnUs
+		translation: translationEnUs,
 	},
 	"zh-CN": {
-		translation: translationZhCn
+		translation: translationZhCn,
 	},
 	"zh-TW": {
-		translation: translationZhTw
-	}
+		translation: translationZhTw,
+	},
 };
 
 const lang = ((): string => {
@@ -46,14 +44,18 @@ const lang = ((): string => {
 	}
 })();
 
-i18next.init({
-	resources: i18nResources,
-	lng: lang,
+await i18next.init({
 	fallbackLng: "en-US",
 	interpolation: {
-		escapeValue: false
-	}
+		escapeValue: false,
+	},
+	lng: lang,
+	resources: i18nResources,
 });
+
+document.documentElement.lang = lang;
+document.title = t("randomNumberByShangzhen");
+
 library.add(
 	faClockRotateLeft,
 	faDeleteLeft,
@@ -61,18 +63,15 @@ library.add(
 	faGear,
 	faGithub,
 	faUpload,
-	faXmark
+	faXmark,
 );
 
-document.documentElement.lang = lang;
-document.title = i18next.t("randomNumberByShangzhen");
-
-createApp(App)
+createApp(App as ComponentOptions)
 	.component("font-awesome-icon", FontAwesomeIcon)
-	.use(I18NextVue, { i18next })
+	.use(I18NextVue, { i18next: i18next })
 	.use(VueGtag, {
 		config: {
-			id: "G-VLJ52KB4ZZ"
-		}
+			id: "G-VLJ52KB4ZZ",
+		},
 	})
 	.mount("#app");

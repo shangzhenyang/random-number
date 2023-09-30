@@ -16,7 +16,6 @@
 		"resolveJsonModule": true,
 		"isolatedModules": true,
 		"useDefineForClassFields": true,
-		"verbatimModuleSyntax": true,
 		"jsx": "preserve",
 		"paths": {
 			"@/*": [
@@ -28,12 +27,7 @@
 		]
 	},
 	"include": [
-		"env.d.ts",
-		"src/**/*",
-		"src/**/*.vue",
-		"vite.config.*",
-		"vitest.config.*",
-		"cypress.config.*",
-		"playwright.config.*"
+		"src",
+		"*.ts"
 	]
 }

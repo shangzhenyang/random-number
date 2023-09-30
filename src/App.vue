@@ -1,21 +1,18 @@
 <script setup lang="ts">
-import { ref } from "vue";
-
 import FooterArea from "@/components/FooterArea.vue";
 import HistoryPanel from "@/components/HistoryPanel.vue";
 import IconBar from "@/components/IconBar.vue";
 import NumberArea from "@/components/NumberArea.vue";
 import SettingsPanel from "@/components/SettingsPanel.vue";
-
-import type { Ref } from "vue";
-import type SettingsInfo from "@/types/SettingsInfo";
+import { SettingsInfo } from "@/types";
+import { ref, Ref } from "vue";
 
 const DESKTOP_WIDTH = 1160;
 
 const names = ref<string[]>(((): string[] => {
 	try {
 		const storedNames = localStorage.getItem("names");
-		return storedNames ? JSON.parse(storedNames) : [];
+		return storedNames ? JSON.parse(storedNames) as string[] : [];
 	} catch {
 		return [];
 	}
@@ -23,13 +20,13 @@ const names = ref<string[]>(((): string[] => {
 
 const settings = ref<SettingsInfo>(((): SettingsInfo => {
 	const defaultValue = {
-		quantity: "1",
-		minimum: "1",
+		evenOnly: false,
 		maximum: "60",
-		speed: "100",
-		repeat: true,
+		minimum: "1",
 		oddOnly: false,
-		evenOnly: false
+		quantity: "1",
+		repeat: true,
+		speed: "100",
 	};
 	try {
 		const storedSettings = localStorage.getItem("settings");
@@ -37,6 +34,9 @@ const settings = ref<SettingsInfo>(((): SettingsInfo => {
 			return defaultValue;
 		}
 		const json = JSON.parse(storedSettings) as SettingsInfo;
+		if (!json.quantity || parseInt(json.quantity) < 1) {
+			json.quantity = defaultValue.quantity;
+		}
 		if (
 			!json.minimum ||
 			!json.maximum ||
@@ -79,8 +79,8 @@ function setInputValue(key: string): ((event: Event) => void) {
 		const newSettings = { ...settings.value };
 		if (target.type === "checkbox") {
 			const conflicts = {
+				evenOnly: "oddOnly",
 				oddOnly: "evenOnly",
-				evenOnly: "oddOnly"
 			};
 			const conflict = conflicts[key as keyof typeof conflicts];
 			if (conflict) {
@@ -125,7 +125,7 @@ function setSettings(newValue: SettingsInfo): void {
 
 function togglePanel(
 	panelToShow: Ref<boolean>,
-	panelToHide: Ref<boolean>
+	panelToHide: Ref<boolean>,
 ): void {
 	if (!panelToShow.value && window.innerWidth <= DESKTOP_WIDTH) {
 		panelToHide.value = false;
@@ -144,60 +144,40 @@ function toggleSettingsPanel(): void {
 
 <template>
 	<div class="app">
-		<HistoryPanel
-			v-bind:show="showHistoryPanel"
-			v-bind:history-items="historyItems"
-			v-bind:close-panel="() => {
-				showHistoryPanel = false;
-			}"
-			v-bind:set-history-items="(newValue: string[]) => {
-				historyItems = newValue;
-			}"
-		/>
+		<HistoryPanel v-bind:show="showHistoryPanel" v-bind:history-items="historyItems" v-bind:close-panel="() => {
+			showHistoryPanel = false;
+		}" v-bind:set-history-items="(newValue: string[]) => {
+	historyItems = newValue;
+}" />
 		<main>
 			<div class="number-areas">
-				<NumberArea
-					v-for="index in parseInt(settings.quantity)"
-					v-bind:key="index"
-					v-bind:history-items="historyItems"
-					v-bind:names="names"
-					v-bind:settings="settings"
-					v-bind:addHistoryItem="addHistoryItem"
-					v-bind:set-settings="setSettings"
-				/>
+				<NumberArea v-for="index in (parseInt(settings.quantity) || 0)" v-bind:key="index" v-bind:history-items="historyItems" v-bind:names="names" v-bind:settings="settings" v-bind:addHistoryItem="addHistoryItem" v-bind:set-settings="setSettings" />
 			</div>
 		</main>
-		<SettingsPanel
-			v-bind:show="showSettingsPanel"
-			v-bind:names="names"
-			v-bind:settings="settings"
-			v-bind:closePanel="() => {
-				showSettingsPanel = false;
-			}"
-			v-bind:setInputValue="setInputValue"
-			v-bind:setNames="setNames"
-		/>
+		<SettingsPanel v-bind:show="showSettingsPanel" v-bind:names="names" v-bind:settings="settings" v-bind:closePanel="() => {
+			showSettingsPanel = false;
+		}" v-bind:setInputValue="setInputValue" v-bind:setNames="setNames" />
 		<FooterArea />
-		<IconBar
-			class="corner-icons"
-			v-bind:items="[{
+		<IconBar class="corner-icons" v-bind:items="[
+			{
 				icon: ['fas', 'gear'],
 				show: !showSettingsPanel,
 				title: $t('settings'),
 				onClick: toggleSettingsPanel
-			}, {
+			},
+			{
 				icon: ['fas', 'clock-rotate-left'],
 				show: !showHistoryPanel,
 				title: $t('history'),
 				onClick: toggleHistoryPanel
-			}, {
+			},
+			{
 				icon: ['fab', 'github'],
 				show: true,
 				title: 'GitHub',
 				onClick: openGitHub
-			}]"
-			size="xl"
-		/>
+			},
+		]" size="xl" />
 	</div>
 </template>
 

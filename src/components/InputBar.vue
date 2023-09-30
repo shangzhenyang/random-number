@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 defineProps<{
 	id: string;
 	isCheckBox: boolean;
@@ -16,20 +15,8 @@ defineProps<{
 	}">
 		<label v-bind:for="id">{{ labelValue }}</label>
 		<div v-if="isCheckBox" class="spacer"></div>
-		<input
-			v-if="isCheckBox"
-			v-bind:id="id"
-			type="checkbox"
-			v-bind:checked="Boolean(value)"
-			v-on:change="setValue"
-		/>
-		<input
-			v-else
-			v-bind:id="id"
-			type="number"
-			v-bind:value="value"
-			v-on:input="setValue"
-		/>
+		<input v-if="isCheckBox" v-bind:id="id" type="checkbox" v-bind:checked="Boolean(value)" v-on:change="setValue" />
+		<input v-else v-bind:id="id" type="number" v-bind:value="value" v-on:input="setValue" />
 	</div>
 </template>
 

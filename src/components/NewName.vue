@@ -29,25 +29,11 @@ function saveName(): void {
 <template>
 	<li class="list-input-bar">
 		<label for="new-name">{{ $t("newName") }}</label>
-		<input
-			id="new-name"
-			class="list-item-main"
-			type="text"
-			v-model="newName"
-			v-bind:placeholder="$t('enterHere').toString()"
-			v-on:keydown.enter="saveName"
-		/>
-		<button
-			v-bind:disabled="!newName"
-			v-on:click="saveName"
-		>
+		<input id="new-name" class="list-item-main" type="text" v-model="newName" v-bind:placeholder="$t('enterHere').toString()" v-on:keydown.enter="saveName" />
+		<button v-bind:disabled="!newName" v-on:click="saveName">
 			{{ $t("save") }}
 		</button>
-		<button
-			v-if="index"
-			v-bind:disabled="!newName"
-			v-on:click="doneEditing"
-		>
+		<button v-if="index" v-bind:disabled="!newName" v-on:click="doneEditing">
 			{{ $t("cancel") }}
 		</button>
 	</li>

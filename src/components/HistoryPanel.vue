@@ -17,29 +17,26 @@ function deleteHistoryItem(index: number): void {
 
 <template>
 	<div v-if="show" class="panel panel-left">
-		<TitleBar
-			v-bind:icons="[{
+		<TitleBar v-bind:icons="[
+			{
 				icon: ['fas', 'delete-left'],
 				title: $t('clear'),
 				show: historyItems.length > 0,
 				onClick: () => {
 					setHistoryItems([]);
 				}
-			}, {
+			},
+			{
 				icon: ['fas', 'xmark'],
 				title: $t('close'),
 				show: true,
 				onClick: closePanel
-			}]"
-			icon-size="xl"
-		>
+			},
+		]" icon-size="xl">
 			<h1>{{ $t("history") }}</h1>
 		</TitleBar>
 		<ul>
-			<li
-				v-for="item, index in historyItems"
-				v-bind:key="index"
-			>
+			<li v-for="item, index in historyItems" v-bind:key="index">
 				<div class="list-item-main">{{ item }}</div>
 				<button v-on:click="() => deleteHistoryItem(index)">
 					{{ $t("delete") }}

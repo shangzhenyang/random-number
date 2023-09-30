@@ -1,38 +1,37 @@
-import { fileURLToPath, URL } from "node:url";
-import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import autoprefixer from "autoprefixer";
+import { fileURLToPath, URL } from "node:url";
+import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
 
-// https://vitejs.dev/config/
 export default defineConfig({
 	css: {
 		postcss: {
-			plugins: [autoprefixer]
-		}
+			plugins: [autoprefixer],
+		},
 	},
 	plugins: [
 		vue(),
 		VitePWA({
-			registerType: "autoUpdate",
 			manifest: {
-				name: "Random Number",
-				short_name: "Random",
-				id: "/",
-				theme_color: "#0066cc",
 				description: "A random number generator with customizable options including range, repetition, even/odd selection, and alias name labeling.",
 				icons: [{
-					src: "https://www.shangzhenyang.com/images/avatar.png",
+					purpose: "any",
 					sizes: "720x720",
+					src: "https://www.shangzhenyang.com/images/avatar.png",
 					type: "image/png",
-					purpose: "any"
-				}]
-			}
-		})
+				}],
+				id: "/",
+				name: "Random Number",
+				short_name: "Random",
+				theme_color: "#0066cc",
+			},
+			registerType: "autoUpdate",
+		}),
 	],
 	resolve: {
 		alias: {
-			"@": fileURLToPath(new URL("./src", import.meta.url))
-		}
-	}
+			"@": fileURLToPath(new URL("./src", import.meta.url)),
+		},
+	},
 });

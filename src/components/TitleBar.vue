@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import IconBar from "@/components/IconBar.vue";
-
-import type IconInfo from "@/types/IconInfo";
+import { IconInfo } from "@/types";
 
 defineProps<{
 	icons: IconInfo[];
@@ -12,10 +11,7 @@ defineProps<{
 <template>
 	<div class="title-bar">
 		<slot></slot>
-		<IconBar
-			v-bind:items="icons"
-			v-bind:size="iconSize"
-		/>
+		<IconBar v-bind:items="icons" v-bind:size="iconSize" />
 	</div>
 </template>
 

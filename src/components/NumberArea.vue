@@ -1,7 +1,6 @@
 <script setup lang="ts">
+import { SettingsInfo } from "@/types";
 import { ref } from "vue";
-
-import type SettingsInfo from "@/types/SettingsInfo";
 
 const props = defineProps<{
 	historyItems: string[];
@@ -104,10 +103,7 @@ function toggleScrolling(): void {
 			'number-box': true,
 			'name': props.names.length > 0,
 		}">{{ number }}</div>
-		<button
-			class="main-btn"
-			v-on:click="toggleScrolling"
-		>
+		<button class="main-btn" v-on:click="toggleScrolling">
 			{{ isScrolling ? $t("stop") : $t("start") }}
 		</button>
 	</div>
