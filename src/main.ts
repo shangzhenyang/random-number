@@ -14,10 +14,10 @@ import {
 	faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { inject } from "@vercel/analytics";
 import i18next, { t } from "i18next";
 import I18NextVue from "i18next-vue";
 import { ComponentOptions, createApp } from "vue";
+import VueGtagPlugin from "vue-gtag";
 
 const i18nResources = {
 	"en-US": {
@@ -66,9 +66,12 @@ library.add(
 	faXmark,
 );
 
-inject();
-
 createApp(App as ComponentOptions)
 	.component("font-awesome-icon", FontAwesomeIcon)
 	.use(I18NextVue, { i18next: i18next })
+	.use(VueGtagPlugin, {
+		config: {
+			id: "G-VLJ52KB4ZZ",
+		},
+	})
 	.mount("#app");

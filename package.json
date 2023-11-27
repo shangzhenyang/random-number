@@ -14,9 +14,9 @@
 		"@fortawesome/free-brands-svg-icons": "^6.4.2",
 		"@fortawesome/free-solid-svg-icons": "^6.4.2",
 		"@fortawesome/vue-fontawesome": "^3.0.3",
-		"@vercel/analytics": "^1.1.1",
 		"i18next-vue": "^2.2.1",
-		"vue": "^3.2.45"
+		"vue": "^3.2.45",
+		"vue-gtag": "^2.0.1"
 	},
 	"devDependencies": {
 		"@types/node": "^18.18.8",
