@@ -1,4 +1,4 @@
-import App from "@/App.vue";
+import App from "@/components/App.vue";
 import "@/style.css";
 import translationEnUs from "@/translations/en-us.json";
 import translationZhCn from "@/translations/zh-cn.json";
