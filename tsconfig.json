@@ -1,11 +1,7 @@
 {
 	"compilerOptions": {
 		"target": "ESNext",
-		"lib": [
-			"DOM",
-			"DOM.Iterable",
-			"ESNext"
-		],
+		"lib": ["DOM", "DOM.Iterable", "ESNext"],
 		"baseUrl": ".",
 		"skipLibCheck": true,
 		"esModuleInterop": true,
@@ -18,16 +14,9 @@
 		"useDefineForClassFields": true,
 		"jsx": "preserve",
 		"paths": {
-			"@/*": [
-				"./src/*"
-			]
+			"@/*": ["./src/*"]
 		},
-		"types": [
-			"node"
-		]
+		"types": ["node"]
 	},
-	"include": [
-		"src",
-		"*.ts"
-	]
+	"include": ["src", "*.ts"]
 }

@@ -9,14 +9,31 @@ defineProps<{
 </script>
 
 <template>
-	<div v-bind:class="{
-		'input-bar': true,
-		'checkbox': isCheckBox
-	}">
-		<label v-bind:for="id">{{ labelValue }}</label>
-		<div v-if="isCheckBox" class="spacer"></div>
-		<input v-if="isCheckBox" v-bind:id="id" type="checkbox" v-bind:checked="Boolean(value)" v-on:change="setValue" />
-		<input v-else v-bind:id="id" type="number" v-bind:value="value" v-on:input="setValue" />
+	<div
+		:class="{
+			'input-bar': true,
+			'checkbox': isCheckBox,
+		}"
+	>
+		<label :for="id">{{ labelValue }}</label>
+		<div
+			v-if="isCheckBox"
+			class="spacer"
+		></div>
+		<input
+			v-if="isCheckBox"
+			:id="id"
+			type="checkbox"
+			:checked="Boolean(value)"
+			@change="setValue"
+		/>
+		<input
+			v-else
+			:id="id"
+			type="number"
+			:value="value"
+			@input="setValue"
+		/>
 	</div>
 </template>
 
@@ -28,14 +45,14 @@ defineProps<{
 	justify-content: space-between;
 }
 
-.input-bar input[type=checkbox] {
+.input-bar input[type="checkbox"] {
 	--size: 20px;
 	accent-color: var(--theme-color);
 	height: var(--size);
 	width: var(--size);
 }
 
-.input-bar input[type=number] {
+.input-bar input[type="number"] {
 	background-color: var(--fg-alpha-1);
 	border: none;
 	border-radius: 5px;

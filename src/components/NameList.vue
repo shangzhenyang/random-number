@@ -20,9 +20,11 @@ function deleteName(index: number): void {
 
 function exportNames(): void {
 	const newA = document.createElement("a");
-	newA.href = URL.createObjectURL(new Blob([props.names.join("\n")], {
-		type: "text/plain",
-	}));
+	newA.href = URL.createObjectURL(
+		new Blob([props.names.join("\n")], {
+			type: "text/plain",
+		}),
+	);
 	newA.download = "names.txt";
 	newA.click();
 }
@@ -37,7 +39,8 @@ function importNames(): void {
 			const reader = new FileReader();
 			reader.onload = (): void => {
 				if (typeof reader.result === "string") {
-					const newNames = reader.result.split("\n")
+					const newNames = reader.result
+						.split("\n")
 						.filter((nameItem) => {
 							return !!nameItem;
 						})
@@ -56,39 +59,59 @@ function importNames(): void {
 
 <template>
 	<section>
-		<TitleBar v-bind:icons="[
-			{
-				icon: ['fas', 'download'],
-				title: $t('import'),
-				show: true,
-				onClick: importNames
-			},
-			{
-				icon: ['fas', 'upload'],
-				title: $t('export'),
-				show: true,
-				onClick: exportNames
-			},
-		]" icon-size="lg">
+		<TitleBar
+			:icons="[
+				{
+					icon: ['fas', 'download'],
+					title: $t('import'),
+					show: true,
+					onClick: importNames,
+				},
+				{
+					icon: ['fas', 'upload'],
+					title: $t('export'),
+					show: true,
+					onClick: exportNames,
+				},
+			]"
+			icon-size="lg"
+		>
 			<h2>{{ $t("names") }}</h2>
 		</TitleBar>
 		<div class="description">{{ description }}</div>
 		<ul>
-			<NewName v-bind:names="names" v-bind:set-names="setNames" />
-			<template v-for="(name, index) in names" v-bind:key="index">
+			<NewName
+				:names="names"
+				:set-names="setNames"
+			/>
+			<template
+				v-for="(name, index) in names"
+				:key="index"
+			>
 				<template v-if="editingIndex !== index">
 					<li>
 						<div class="list-item-main">{{ name }}</div>
-						<button v-on:click="() => editingIndex = index">
+						<button
+							type="button"
+							@click="() => (editingIndex = index)"
+						>
 							{{ $t("edit") }}
 						</button>
-						<button v-on:click="() => deleteName(index)">
+						<button
+							type="button"
+							@click="() => deleteName(index)"
+						>
 							{{ $t("delete") }}
 						</button>
 					</li>
 				</template>
 				<template v-else>
-					<NewName v-bind:names="names" v-bind:set-names="setNames" v-bind:index="index" v-bind:done-editing="() => editingIndex = -1" />
+					<NewName
+						:names="names"
+						:set-names="setNames"
+						:index="index"
+						:done-editing="() => (editingIndex = -1)"
+					/>
 				</template>
 			</template>
 		</ul>
@@ -105,7 +128,7 @@ h2 {
 .description {
 	font-size: 14px;
 	margin-bottom: 15px;
-	opacity: .8;
+	opacity: 0.8;
 }
 
 .title-bar {

@@ -16,7 +16,7 @@ const number = ref<string>("0"); // string for names
 let timeoutId: number | undefined = undefined;
 
 function getRandomInt(min: number, max: number): number {
-	return Math.floor((Math.random() * (max - min + 1)) + min);
+	return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 function getRandomValue(): string {
@@ -65,19 +65,22 @@ function getRandomValue(): string {
 
 function startScrolling(): void {
 	// uses setTimeout instead of setInterval to dynamically change the speed
-	timeoutId = window.setTimeout(() => {
-		try {
-			const randomValue = getRandomValue();
-			number.value = randomValue;
-			if (isScrolling.value) {
-				startScrolling();
+	timeoutId = window.setTimeout(
+		() => {
+			try {
+				const randomValue = getRandomValue();
+				number.value = randomValue;
+				if (isScrolling.value) {
+					startScrolling();
+				}
+			} catch (error) {
+				console.error(error);
+				localStorage.clear();
+				window.location.reload();
 			}
-		} catch (error) {
-			console.error(error);
-			localStorage.clear();
-			window.location.reload();
-		}
-	}, 1000 / parseInt(props.settings.speed));
+		},
+		1000 / parseInt(props.settings.speed),
+	);
 }
 
 function stopScrolling(): void {
@@ -99,11 +102,19 @@ function toggleScrolling(): void {
 
 <template>
 	<div class="number-area">
-		<div v-bind:class="{
-			'number-box': true,
-			'name': props.names.length > 0,
-		}">{{ number }}</div>
-		<button class="main-btn" v-on:click="toggleScrolling">
+		<div
+			:class="{
+				'number-box': true,
+				'name': props.names.length > 0,
+			}"
+		>
+			{{ number }}
+		</div>
+		<button
+			class="main-btn"
+			type="button"
+			@click="toggleScrolling"
+		>
 			{{ isScrolling ? $t("stop") : $t("start") }}
 		</button>
 	</div>
@@ -118,7 +129,7 @@ function toggleScrolling(): void {
 	font-size: 24px;
 	padding: 10px 30px;
 	text-transform: uppercase;
-	transition: filter .25s;
+	transition: filter 0.25s;
 	width: 300px;
 }
 
@@ -131,7 +142,7 @@ function toggleScrolling(): void {
 }
 
 .main-btn:active {
-	filter: brightness(.9);
+	filter: brightness(0.9);
 }
 
 .number-area {

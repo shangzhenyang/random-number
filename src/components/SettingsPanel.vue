@@ -9,7 +9,7 @@ defineProps<{
 	names: string[];
 	settings: SettingsInfo;
 	closePanel: () => void;
-	setInputValue: (key: string) => ((event: Event) => void);
+	setInputValue: (key: string) => (event: Event) => void;
 	setNames: (newValue: string[]) => void;
 }>();
 
@@ -25,16 +25,35 @@ const settingsItems: (keyof SettingsInfo)[] = [
 </script>
 
 <template>
-	<div v-if="show" class="panel panel-right">
-		<TitleBar v-bind:icons="[{
-			icon: ['fas', 'xmark'],
-			title: $t('close'),
-			show: true,
-			onClick: closePanel
-		}]" icon-size="xl">
+	<div
+		v-if="show"
+		class="panel panel-right"
+	>
+		<TitleBar
+			:icons="[
+				{
+					icon: ['fas', 'xmark'],
+					title: $t('close'),
+					show: true,
+					onClick: closePanel,
+				},
+			]"
+			icon-size="xl"
+		>
 			<h1>{{ $t("settings") }}</h1>
 		</TitleBar>
-		<InputBar v-for="item in settingsItems" v-bind:key="item" v-bind:id="item" v-bind:is-check-box="typeof settings[item] === 'boolean'" v-bind:label-value="$t(item)" v-bind:value="settings[item]" v-bind:set-value="setInputValue(item)" />
-		<NameList v-bind:names="names" v-bind:set-names="setNames" />
+		<InputBar
+			v-for="item in settingsItems"
+			:key="item"
+			:id="item"
+			:is-check-box="typeof settings[item] === 'boolean'"
+			:label-value="$t(item)"
+			:value="settings[item]"
+			:set-value="setInputValue(item)"
+		/>
+		<NameList
+			:names="names"
+			:set-names="setNames"
+		/>
 	</div>
 </template>

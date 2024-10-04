@@ -16,7 +16,18 @@ const itemsShowing = computed(() => {
 
 <template>
 	<div class="icon-bar">
-		<font-awesome-icon v-for="item in itemsShowing" v-bind:key="item.title" v-bind:icon="item.icon" v-bind:size="size" v-bind:title="item.title" class="icon" role="button" tabindex="0" v-on:click="() => item.onClick()" v-on:keydown.enter="() => item.onClick()" />
+		<font-awesome-icon
+			v-for="item in itemsShowing"
+			:key="item.title"
+			:icon="item.icon"
+			:size="size"
+			:title="item.title"
+			class="icon"
+			role="button"
+			tabindex="0"
+			@click="() => item.onClick()"
+			@keydown.enter="() => item.onClick()"
+		/>
 	</div>
 </template>
 
@@ -28,12 +39,12 @@ const itemsShowing = computed(() => {
 
 .icon {
 	cursor: pointer;
-	transition: all .25s;
+	transition: all 0.25s;
 }
 
 .icon:focus,
 .icon:hover {
-	opacity: .8;
+	opacity: 0.8;
 	transform: rotate(-360deg);
 }
 

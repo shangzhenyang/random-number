@@ -11,7 +11,10 @@ defineProps<{
 <template>
 	<div class="title-bar">
 		<slot></slot>
-		<IconBar v-bind:items="icons" v-bind:size="iconSize" />
+		<IconBar
+			:items="icons"
+			:size="iconSize"
+		/>
 	</div>
 </template>
 

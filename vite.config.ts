@@ -17,13 +17,16 @@ export default defineConfig({
 		vue(),
 		VitePWA({
 			manifest: {
-				description: "A random number generator with customizable options including range, repetition, even/odd selection, and alias name labeling.",
-				icons: [{
-					purpose: "any",
-					sizes: "720x720",
-					src: "https://www.shangzhenyang.com/images/avatar.png",
-					type: "image/png",
-				}],
+				description:
+					"A random number generator with customizable options including range, repetition, even/odd selection, and alias name labeling.",
+				icons: [
+					{
+						purpose: "any",
+						sizes: "720x720",
+						src: "https://www.shangzhenyang.com/images/avatar.png",
+						type: "image/png",
+					},
+				],
 				id: "/",
 				name: "Random Number",
 				short_name: "Random",

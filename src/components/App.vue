@@ -9,47 +9,51 @@ import { ref, Ref } from "vue";
 
 const DESKTOP_WIDTH = 1160;
 
-const names = ref<string[]>(((): string[] => {
-	try {
-		const storedNames = localStorage.getItem("names");
-		return storedNames ? JSON.parse(storedNames) as string[] : [];
-	} catch {
-		return [];
-	}
-})());
+const names = ref<string[]>(
+	((): string[] => {
+		try {
+			const storedNames = localStorage.getItem("names");
+			return storedNames ? (JSON.parse(storedNames) as string[]) : [];
+		} catch {
+			return [];
+		}
+	})(),
+);
 
-const settings = ref<SettingsInfo>(((): SettingsInfo => {
-	const defaultValue = {
-		evenOnly: false,
-		maximum: "60",
-		minimum: "1",
-		oddOnly: false,
-		quantity: "1",
-		repeat: true,
-		speed: "100",
-	};
-	try {
-		const storedSettings = localStorage.getItem("settings");
-		if (!storedSettings) {
+const settings = ref<SettingsInfo>(
+	((): SettingsInfo => {
+		const defaultValue = {
+			evenOnly: false,
+			maximum: "60",
+			minimum: "1",
+			oddOnly: false,
+			quantity: "1",
+			repeat: true,
+			speed: "100",
+		};
+		try {
+			const storedSettings = localStorage.getItem("settings");
+			if (!storedSettings) {
+				return defaultValue;
+			}
+			const json = JSON.parse(storedSettings) as SettingsInfo;
+			if (!json.quantity || parseInt(json.quantity) < 1) {
+				json.quantity = defaultValue.quantity;
+			}
+			if (
+				!json.minimum ||
+				!json.maximum ||
+				parseInt(json.minimum) >= parseInt(json.maximum)
+			) {
+				json.minimum = defaultValue.minimum;
+				json.maximum = defaultValue.maximum;
+			}
+			return json;
+		} catch {
 			return defaultValue;
 		}
-		const json = JSON.parse(storedSettings) as SettingsInfo;
-		if (!json.quantity || parseInt(json.quantity) < 1) {
-			json.quantity = defaultValue.quantity;
-		}
-		if (
-			!json.minimum ||
-			!json.maximum ||
-			parseInt(json.minimum) >= parseInt(json.maximum)
-		) {
-			json.minimum = defaultValue.minimum;
-			json.maximum = defaultValue.maximum;
-		}
-		return json;
-	} catch {
-		return defaultValue;
-	}
-})());
+	})(),
+);
 
 const historyItems = ref<string[]>([]);
 const showHistoryPanel = ref<boolean>(false);
@@ -73,7 +77,7 @@ function openGitHub(): void {
 	window.open("https://github.com/shangzhenyang/random-number");
 }
 
-function setInputValue(key: string): ((event: Event) => void) {
+function setInputValue(key: string): (event: Event) => void {
 	return (event: Event) => {
 		const target = event.target as HTMLInputElement;
 		const newSettings = { ...settings.value };
@@ -112,8 +116,8 @@ function setNames(newValue: string[]): void {
 
 	const newSettings = { ...settings.value };
 	newSettings.minimum = "1";
-	newSettings.maximum = newValue.length === 0 ?
-		"60" : newValue.length.toString();
+	newSettings.maximum =
+		newValue.length === 0 ? "60" : newValue.length.toString();
 	setSettings(newSettings);
 }
 
@@ -144,40 +148,70 @@ function toggleSettingsPanel(): void {
 
 <template>
 	<div class="app">
-		<HistoryPanel v-bind:show="showHistoryPanel" v-bind:history-items="historyItems" v-bind:close-panel="() => {
-			showHistoryPanel = false;
-		}" v-bind:set-history-items="(newValue: string[]) => {
-	historyItems = newValue;
-}" />
+		<HistoryPanel
+			:show="showHistoryPanel"
+			:history-items="historyItems"
+			:close-panel="
+				() => {
+					showHistoryPanel = false;
+				}
+			"
+			:set-history-items="
+				(newValue: string[]) => {
+					historyItems = newValue;
+				}
+			"
+		/>
 		<main>
 			<div class="number-areas">
-				<NumberArea v-for="index in (parseInt(settings.quantity) || 0)" v-bind:key="index" v-bind:history-items="historyItems" v-bind:names="names" v-bind:settings="settings" v-bind:addHistoryItem="addHistoryItem" v-bind:set-settings="setSettings" />
+				<NumberArea
+					v-for="index in parseInt(settings.quantity) || 0"
+					:key="index"
+					:history-items="historyItems"
+					:names="names"
+					:settings="settings"
+					:addHistoryItem="addHistoryItem"
+					:set-settings="setSettings"
+				/>
 			</div>
 		</main>
-		<SettingsPanel v-bind:show="showSettingsPanel" v-bind:names="names" v-bind:settings="settings" v-bind:closePanel="() => {
-			showSettingsPanel = false;
-		}" v-bind:setInputValue="setInputValue" v-bind:setNames="setNames" />
+		<SettingsPanel
+			:show="showSettingsPanel"
+			:names="names"
+			:settings="settings"
+			:closePanel="
+				() => {
+					showSettingsPanel = false;
+				}
+			"
+			:setInputValue="setInputValue"
+			:setNames="setNames"
+		/>
 		<FooterArea />
-		<IconBar class="corner-icons" v-bind:items="[
-			{
-				icon: ['fas', 'gear'],
-				show: !showSettingsPanel,
-				title: $t('settings'),
-				onClick: toggleSettingsPanel
-			},
-			{
-				icon: ['fas', 'clock-rotate-left'],
-				show: !showHistoryPanel,
-				title: $t('history'),
-				onClick: toggleHistoryPanel
-			},
-			{
-				icon: ['fab', 'github'],
-				show: true,
-				title: 'GitHub',
-				onClick: openGitHub
-			},
-		]" size="xl" />
+		<IconBar
+			class="corner-icons"
+			:items="[
+				{
+					icon: ['fas', 'gear'],
+					show: !showSettingsPanel,
+					title: $t('settings'),
+					onClick: toggleSettingsPanel,
+				},
+				{
+					icon: ['fas', 'clock-rotate-left'],
+					show: !showHistoryPanel,
+					title: $t('history'),
+					onClick: toggleHistoryPanel,
+				},
+				{
+					icon: ['fab', 'github'],
+					show: true,
+					title: 'GitHub',
+					onClick: openGitHub,
+				},
+			]"
+			size="xl"
+		/>
 	</div>
 </template>
 

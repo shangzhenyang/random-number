@@ -1,10 +1,10 @@
 :root {
 	--bg-body: white;
-	--fg-alpha-05: rgba(0, 0, 0, .05);
-	--fg-alpha-1: rgba(0, 0, 0, .1);
-	--fg-alpha-2: rgba(0, 0, 0, .2);
-	--fg-alpha-25: rgba(0, 0, 0, .25);
-	--fg-alpha-5: rgba(0, 0, 0, .5);
+	--fg-alpha-05: rgba(0, 0, 0, 0.05);
+	--fg-alpha-1: rgba(0, 0, 0, 0.1);
+	--fg-alpha-2: rgba(0, 0, 0, 0.2);
+	--fg-alpha-25: rgba(0, 0, 0, 0.25);
+	--fg-alpha-5: rgba(0, 0, 0, 0.5);
 	--theme-color: rgb(0, 102, 204);
 }
 
@@ -22,7 +22,7 @@
 
 body {
 	background-color: var(--bg-body);
-	color: rgba(0, 0, 0, .8);
+	color: rgba(0, 0, 0, 0.8);
 	cursor: default;
 	font-family: sans-serif;
 	height: 100%;
@@ -31,6 +31,10 @@ body {
 	-webkit-tap-highlight-color: transparent;
 	text-size-adjust: 100%;
 	user-select: none;
+}
+
+body > div {
+	height: 100%;
 }
 
 button:disabled {
@@ -65,7 +69,7 @@ li:nth-child(even) {
 	background-color: var(--fg-alpha-05);
 }
 
-li>* {
+li > * {
 	border: none;
 	font-size: inherit;
 	padding: 10px 15px;
@@ -74,7 +78,7 @@ li>* {
 li button {
 	background-color: transparent;
 	color: inherit;
-	transition: all .25s;
+	transition: all 0.25s;
 }
 
 li button:focus,
@@ -101,7 +105,7 @@ ul {
 }
 
 .panel {
-	animation: fadeIn .25s;
+	animation: fadeIn 0.25s;
 	background-color: var(--bg-body);
 	border: 0 solid var(--fg-alpha-1);
 	display: flex;
@@ -128,10 +132,6 @@ ul {
 	margin: 0;
 }
 
-#app {
-	height: 100%;
-}
-
 @keyframes fadeIn {
 	from {
 		opacity: 0;
@@ -152,12 +152,12 @@ ul {
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		--bg-body: rgb(30, 30, 30);
-		--fg-alpha-05: rgba(255, 255, 255, .05);
-		--fg-alpha-1: rgba(255, 255, 255, .1);
-		--fg-alpha-2: rgba(255, 255, 255, .2);
-		--fg-alpha-25: rgba(255, 255, 255, .25);
-		--fg-alpha-5: rgba(255, 255, 255, .5);
+		--bg-body: black;
+		--fg-alpha-05: rgba(255, 255, 255, 0.05);
+		--fg-alpha-1: rgba(255, 255, 255, 0.1);
+		--fg-alpha-2: rgba(255, 255, 255, 0.2);
+		--fg-alpha-25: rgba(255, 255, 255, 0.25);
+		--fg-alpha-5: rgba(255, 255, 255, 0.5);
 		color-scheme: dark;
 	}
 
