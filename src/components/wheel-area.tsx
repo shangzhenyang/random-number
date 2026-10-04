@@ -1,3 +1,4 @@
+import { TickSound } from "@/classes/tick-sound";
 import { Wheel } from "@/classes/wheel";
 import styles from "@/components/wheel-area.module.css";
 import { useStore } from "@/store";
@@ -21,6 +22,7 @@ function WheelArea(): JSX.Element {
 	const hasBrakedRef = useRef(false);
 	const isDrawingRef = useRef(false);
 	const pointerRef = useRef<SVGPathElement>(null);
+	const tickSoundRef = useRef(new TickSound());
 	const wheelRef = useRef(new Wheel());
 
 	const allItems = Wheel.getItems(settings, names);
@@ -62,8 +64,11 @@ function WheelArea(): JSX.Element {
 			const wheel = wheelRef.current;
 			wheel.update(Math.min(0.05, (time - previousTime) / 1000));
 			previousTime = time;
-			if (wheel.hasHitPeg && "vibrate" in navigator) {
-				navigator.vibrate(10);
+			if (wheel.hasHitPeg) {
+				tickSoundRef.current.play();
+				if ("vibrate" in navigator) {
+					navigator.vibrate(10);
+				}
 			}
 			discRef.current.style.transform = `rotate(${wheel.angle}deg)`;
 			pointerRef.current.setAttribute("d", wheel.getPointerPath());
@@ -124,6 +129,7 @@ function WheelArea(): JSX.Element {
 				return;
 			}
 			event.currentTarget.setPointerCapture(event.pointerId);
+			tickSoundRef.current.unlock();
 			wheelRef.current.grab(
 				Wheel.getPointerAngle(event.clientX, event.clientY, rect),
 				event.timeStamp,
@@ -150,6 +156,7 @@ function WheelArea(): JSX.Element {
 
 	const releaseWheel = useCallback(
 		(event: PointerEvent<SVGSVGElement>): void => {
+			tickSoundRef.current.unlock();
 			const velocity = wheelRef.current.release(event.timeStamp);
 			if (Math.abs(velocity) < 360) {
 				return;
@@ -184,6 +191,7 @@ function WheelArea(): JSX.Element {
 		if (!settings.repeat) {
 			setRemovedItems(historyItems);
 		}
+		tickSoundRef.current.unlock();
 		const power = Math.max(1, parseInt(settings.speed) || 100) / 100;
 		wheelRef.current.spin(power * 1500 * (0.85 + Math.random() * 0.3));
 		startDrawing();
