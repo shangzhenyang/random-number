@@ -30,6 +30,7 @@ body {
 	overflow: hidden;
 	-webkit-tap-highlight-color: transparent;
 	text-size-adjust: 100%;
+	-webkit-user-select: none;
 	user-select: none;
 }
 
@@ -96,6 +97,7 @@ li .list-item-main {
 	min-width: 0;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	-webkit-user-select: text;
 	user-select: text;
 }
 

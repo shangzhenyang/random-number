@@ -55,6 +55,7 @@
 	transition:
 		border-color 0.25s,
 		color 0.3s;
+	-webkit-user-select: none;
 	user-select: none;
 	width: 22%;
 }
