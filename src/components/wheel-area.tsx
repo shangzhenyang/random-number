@@ -62,6 +62,9 @@ function WheelArea(): JSX.Element {
 			const wheel = wheelRef.current;
 			wheel.update(Math.min(0.05, (time - previousTime) / 1000));
 			previousTime = time;
+			if (wheel.hasHitPeg && "vibrate" in navigator) {
+				navigator.vibrate(10);
+			}
 			discRef.current.style.transform = `rotate(${wheel.angle}deg)`;
 			pointerRef.current.setAttribute("d", wheel.getPointerPath());
 			if (!wheel.checkIfSettled()) {

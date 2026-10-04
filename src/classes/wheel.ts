@@ -6,6 +6,7 @@ export class Wheel {
 	private dragAngle = 0;
 	private dragSamples: { angle: number; time: number }[] = [];
 	private hasGaps = false;
+	public hasHitPeg = false;
 	public isBraking = false;
 	public isDragging = false;
 	private isTouching = false;
@@ -196,6 +197,7 @@ export class Wheel {
 		);
 		const stepTime = frameTime / stepCount;
 		const friction = this.isBraking ? 1540 : 40;
+		this.hasHitPeg = false;
 		for (let step = 0; step < stepCount; step++) {
 			if (this.isDragging) {
 				this.angle += travel / stepCount;
@@ -242,8 +244,12 @@ export class Wheel {
 		} else {
 			this.tipOffset = relaxedOffset;
 		}
-		this.isTouching =
+		const isTouching =
 			this.tipOffset !== relaxedOffset &&
 			Math.abs(this.tipOffset) > this.contactAngle / 120;
+		if (isTouching && !this.isTouching) {
+			this.hasHitPeg = true;
+		}
+		this.isTouching = isTouching;
 	}
 }
