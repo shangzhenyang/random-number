@@ -1,5 +1,5 @@
-import vue from "@vitejs/plugin-vue";
-import autoprefixer from "autoprefixer";
+import babelPlugin from "@rolldown/plugin-babel";
+import react, { reactCompilerPreset } from "@vitejs/plugin-react";
 import { fileURLToPath, URL } from "node:url";
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
@@ -8,13 +8,11 @@ export default defineConfig({
 	build: {
 		target: "esnext",
 	},
-	css: {
-		postcss: {
-			plugins: [autoprefixer],
-		},
-	},
 	plugins: [
-		vue(),
+		react(),
+		babelPlugin({
+			presets: [reactCompilerPreset()],
+		}),
 		VitePWA({
 			manifest: {
 				description:

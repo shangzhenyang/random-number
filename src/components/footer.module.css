@@ -1,0 +1,11 @@
+.footer {
+	backdrop-filter: blur(10px);
+	bottom: 0;
+	left: 0;
+	padding: 20px;
+	position: fixed;
+}
+
+.footer a {
+	color: inherit;
+}

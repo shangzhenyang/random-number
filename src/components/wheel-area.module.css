@@ -1,0 +1,78 @@
+.disc {
+	cursor: grab;
+	display: block;
+	overflow: visible;
+	touch-action: none;
+	width: 100%;
+}
+
+.labeled .segment path {
+	stroke: var(--bg-body);
+	stroke-width: 3px;
+	vector-effect: non-scaling-stroke;
+}
+
+.pointer {
+	fill: currentColor;
+	height: 24px;
+	overflow: visible;
+	pointer-events: none;
+	position: absolute;
+	right: -28px;
+	top: calc(50% - 4px);
+	width: 44px;
+}
+
+.segment path {
+	fill: var(--fg-alpha-1);
+}
+
+.segment text {
+	fill: currentColor;
+	font-weight: 500;
+}
+
+.segment.winner path {
+	fill: var(--theme-color);
+}
+
+.segment.winner text {
+	fill: white;
+	opacity: 1;
+}
+
+.spin-button {
+	background-color: var(--bg-body);
+	border: 1px solid var(--fg-alpha-1);
+	border-radius: 50%;
+	color: inherit;
+	font-size: 15px;
+	height: 22%;
+	left: 39%;
+	position: absolute;
+	text-transform: uppercase;
+	top: 39%;
+	transition:
+		border-color 0.25s,
+		color 0.3s;
+	user-select: none;
+	width: 22%;
+}
+
+.spin-button.is-hidden {
+	color: transparent;
+}
+
+.spin-button:focus,
+.spin-button:hover {
+	border-color: var(--fg-alpha-2);
+}
+
+.wheel {
+	border: 1px solid var(--fg-alpha-1);
+	border-radius: 50%;
+	flex: none;
+	margin-right: 28px;
+	position: relative;
+	width: min(400px, calc(100vw - 88px));
+}

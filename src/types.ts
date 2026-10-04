@@ -1,16 +1,19 @@
+import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+
 export interface IconInfo {
-	icon: string[];
-	show: boolean;
-	title: string;
+	icon: IconDefinition;
+	isShown: boolean;
 	onClick: () => void;
+	title: string;
 }
 
 export interface SettingsInfo {
+	evenOnly: boolean;
 	maximum: string;
 	minimum: string;
-	quantity: string;
-	speed: string;
-	repeat: boolean;
 	oddOnly: boolean;
-	evenOnly: boolean;
+	quantity: string;
+	repeat: boolean;
+	speed: string;
+	wheel: boolean;
 }

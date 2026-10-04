@@ -1,9 +1,10 @@
 {
 	"css.lint.duplicateProperties": "error",
 	"css.lint.idSelector": "error",
-	"css.lint.importStatement": "error",
+	"css.lint.unknownAtRules": "ignore",
 	"css.lint.zeroUnits": "warning",
 	"editor.codeActionsOnSave": {
+		"source.addMissingImports": "always",
 		"source.organizeImports": "always"
 	},
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -18,6 +19,7 @@
 	"files.trimTrailingWhitespace": true,
 	"html.format.wrapLineLength": 0,
 	"json.validate.enable": false,
+	"npm.packageManager": "pnpm",
 	"typescript.preferences.importModuleSpecifier": "non-relative",
 	"typescript.updateImportsOnFileMove.enabled": "always",
 	"[html]": {
@@ -26,7 +28,7 @@
 	"[typescript]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
-	"[vue]": {
+	"[typescriptreact]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	}
 }

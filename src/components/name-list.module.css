@@ -1,0 +1,15 @@
+.description {
+	font-size: 14px;
+	margin-bottom: 15px;
+	opacity: 0.8;
+}
+
+.title {
+	font-size: 20px;
+	font-weight: normal;
+	margin: 0;
+}
+
+.title-bar {
+	margin: 15px 0 10px;
+}

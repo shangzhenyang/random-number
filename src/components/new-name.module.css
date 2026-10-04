@@ -1,0 +1,13 @@
+.list-input-bar input {
+	background-color: transparent;
+	border-radius: 0;
+	transition: background-color 0.25s;
+}
+
+.list-input-bar input:focus {
+	background-color: var(--fg-alpha-1);
+}
+
+.list-input-bar input::placeholder {
+	color: var(--fg-alpha-5);
+}

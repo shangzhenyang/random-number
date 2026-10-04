@@ -1,0 +1,26 @@
+.app {
+	display: flex;
+	height: 100%;
+}
+
+.corner-icons {
+	backdrop-filter: blur(10px);
+	bottom: 0;
+	padding: 20px;
+	position: fixed;
+	right: 0;
+}
+
+.main {
+	align-items: center;
+	display: flex;
+	overflow: auto;
+	width: 100%;
+}
+
+.number-areas {
+	display: flex;
+	gap: 30px;
+	margin: 0 auto;
+	padding: 30px;
+}

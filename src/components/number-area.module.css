@@ -1,0 +1,48 @@
+.main-button {
+	background-color: var(--theme-color);
+	border: 1px solid var(--fg-alpha-2);
+	border-radius: 5px;
+	color: white;
+	font-size: 24px;
+	padding: 10px 30px;
+	text-transform: uppercase;
+	transition: filter 0.25s;
+	width: 300px;
+}
+
+.main-button:focus {
+	filter: brightness(1.1);
+}
+
+.main-button:hover {
+	filter: brightness(1.2);
+}
+
+.main-button:active {
+	filter: brightness(0.9);
+}
+
+.number-area {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	justify-content: center;
+}
+
+.number-box {
+	align-items: center;
+	border: 1px solid var(--fg-alpha-2);
+	border-radius: 5px;
+	display: flex;
+	font-size: 64px;
+	height: 135px;
+	justify-content: center;
+	overflow: hidden;
+	text-align: center;
+	width: 300px;
+}
+
+.number-box.name {
+	font-size: 40px;
+}

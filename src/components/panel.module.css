@@ -1,0 +1,45 @@
+.panel {
+	animation: fade-in 0.25s;
+	background-color: var(--bg-body);
+	border: 0 solid var(--fg-alpha-1);
+	display: flex;
+	flex: 0 0 400px;
+	flex-direction: column;
+	gap: 10px;
+	height: 100%;
+	max-width: 100%;
+	overflow: auto;
+	padding: 20px 20px 50px;
+}
+
+.panel h1 {
+	font-size: 24px;
+	font-weight: normal;
+	margin: 0;
+}
+
+.panel-left {
+	border-right-width: 1px;
+}
+
+.panel-right {
+	border-left-width: 1px;
+}
+
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+@media screen and (max-width: 800px) {
+	.panel {
+		border: none;
+		position: fixed;
+		width: 100%;
+	}
+}

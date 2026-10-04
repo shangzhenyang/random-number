@@ -104,52 +104,6 @@ ul {
 	padding-inline-start: 0;
 }
 
-.panel {
-	animation: fadeIn 0.25s;
-	background-color: var(--bg-body);
-	border: 0 solid var(--fg-alpha-1);
-	display: flex;
-	flex: 0 0 400px;
-	flex-direction: column;
-	gap: 10px;
-	height: 100%;
-	max-width: 100%;
-	overflow: auto;
-	padding: 20px 20px 50px;
-}
-
-.panel-left {
-	border-right-width: 1px;
-}
-
-.panel-right {
-	border-left-width: 1px;
-}
-
-.panel h1 {
-	font-size: 24px;
-	font-weight: normal;
-	margin: 0;
-}
-
-@keyframes fadeIn {
-	from {
-		opacity: 0;
-	}
-
-	to {
-		opacity: 1;
-	}
-}
-
-@media screen and (max-width: 800px) {
-	.panel {
-		border: none;
-		position: fixed;
-		width: 100%;
-	}
-}
-
 @media (prefers-color-scheme: dark) {
 	:root {
 		--bg-body: black;
