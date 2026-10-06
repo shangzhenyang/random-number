@@ -36,7 +36,7 @@
 	}
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 768px) {
 	.panel {
 		border: none;
 		position: fixed;

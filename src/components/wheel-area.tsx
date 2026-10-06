@@ -18,7 +18,7 @@ function WheelArea(): JSX.Element {
 	const [removedItems, setRemovedItems] = useState<string[]>([]);
 	const [winnerIndex, setWinnerIndex] = useState(-1);
 
-	const discRef = useRef<SVGSVGElement>(null);
+	const discRef = useRef<SVGGElement>(null);
 	const hasBrakedRef = useRef(false);
 	const isDrawingRef = useRef(false);
 	const pointerRef = useRef<SVGPathElement>(null);
@@ -231,10 +231,9 @@ function WheelArea(): JSX.Element {
 				onPointerDown={grabWheel}
 				onPointerMove={dragWheel}
 				onPointerUp={releaseWheel}
-				ref={discRef}
 				viewBox="-500 -500 1000 1000"
 			>
-				{segments}
+				<g ref={discRef}>{segments}</g>
 			</svg>
 			<svg
 				className={styles["pointer"]}

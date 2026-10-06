@@ -28,7 +28,7 @@ export const useStore = create<StoreStateInfo>()(() => {
 });
 
 export function checkIfDesktop(): boolean {
-	return window.innerWidth > 1160;
+	return window.innerWidth >= 1200;
 }
 
 function getInitialSettings(names: string[]): SettingsInfo {

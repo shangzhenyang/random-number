@@ -77,3 +77,10 @@
 	position: relative;
 	width: min(400px, calc(100vw - 88px));
 }
+
+@media screen and (max-width: 768px) {
+	.wheel {
+		margin-right: 0;
+		width: min(400px, calc(100vw - 60px));
+	}
+}
