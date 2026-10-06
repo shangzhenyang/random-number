@@ -16,7 +16,7 @@ export class Wheel {
 	private tipOffset = 0;
 	private velocity = 0;
 
-	private static checkIfEntered(): boolean {
+	public static checkIfEntered(): boolean {
 		try {
 			return localStorage.getItem("hasEnteredWheel") === "1";
 		} catch {
@@ -71,6 +71,17 @@ export class Wheel {
 		return 0;
 	}
 
+	public static getDefaultMaximum(
+		settings: SettingsInfo,
+		names: string[],
+	): string {
+		return settings.minimum === "1" &&
+			settings.maximum === "60" &&
+			names.length === 0
+			? "10"
+			: settings.maximum;
+	}
+
 	public static getItems(settings: SettingsInfo, names: string[]): string[] {
 		const items: string[] = [];
 		for (
@@ -87,15 +98,6 @@ export class Wheel {
 			items.push(names[number - 1] || number.toString());
 		}
 		return items;
-	}
-
-	public static getMaximum(settings: SettingsInfo, names: string[]): string {
-		return !Wheel.checkIfEntered() &&
-			settings.minimum === "1" &&
-			settings.maximum === "60" &&
-			names.length === 0
-			? "10"
-			: settings.maximum;
 	}
 
 	private static getPoint(angle: number): string {

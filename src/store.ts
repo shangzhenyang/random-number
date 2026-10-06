@@ -38,7 +38,9 @@ function getInitialSettings(names: string[]): SettingsInfo {
 	}
 	return {
 		...settings,
-		maximum: Wheel.getMaximum(settings, names),
+		maximum: Wheel.checkIfEntered()
+			? settings.maximum
+			: Wheel.getDefaultMaximum(settings, names),
 		wheel: true,
 	};
 }

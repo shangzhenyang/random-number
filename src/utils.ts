@@ -30,11 +30,15 @@ export function setNames(newValue: string[]): void {
 		names: newValue,
 	});
 	localStorage.setItem("names", JSON.stringify(newValue));
-	setSettings({
+	const newSettings = {
 		...useStore.getState().settings,
 		maximum: newValue.length === 0 ? "60" : newValue.length.toString(),
 		minimum: "1",
-	});
+	};
+	if (newSettings.wheel) {
+		newSettings.maximum = Wheel.getDefaultMaximum(newSettings, newValue);
+	}
+	setSettings(newSettings);
 }
 
 export function setSettings(newValue: SettingsInfo): void {
@@ -84,8 +88,12 @@ export function updateSetting(
 			newSettings.oddOnly = false;
 		} else if (key === "oddOnly") {
 			newSettings.evenOnly = false;
-		} else if (key === "wheel" && input.checked) {
-			newSettings.maximum = Wheel.getMaximum(
+		} else if (
+			key === "wheel" &&
+			input.checked &&
+			!Wheel.checkIfEntered()
+		) {
+			newSettings.maximum = Wheel.getDefaultMaximum(
 				newSettings,
 				useStore.getState().names,
 			);
